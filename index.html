@@ -24,6 +24,12 @@
   }
   body { font-family: 'DM Sans', sans-serif; font-weight: 300; background: var(--white); color: var(--brown); overflow-x: hidden; }
 
+  /* ── Grain overlay — SVG feTurbulence noise over the whole page ── */
+  body::after { content: ''; position: fixed; inset: 0; pointer-events: none; z-index: 9999;
+    opacity: 0.038;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='g'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.72' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23g)'/%3E%3C/svg%3E");
+    background-repeat: repeat; background-size: 220px 220px; }
+
   /* ── NAV ── */
   nav { position: absolute; top: 0; left: 0; right: 0; z-index: 10; display: flex; justify-content: space-between; align-items: center; padding: 28px 64px; }
   .nav-left { display: flex; align-items: center; gap: 16px; }
@@ -57,6 +63,7 @@
     -webkit-mask-composite: source-in; mask-composite: intersect; }
 
   .eyebrow { display: inline-block; font-size: 11px; font-weight: 600; letter-spacing: 0.22em; text-transform: uppercase; color: var(--coral); margin-bottom: 28px; }
+  .eyebrow::after { content: ''; display: block; width: 28px; height: 1.5px; background: var(--coral); margin-top: 8px; opacity: 0.6; }
   .hero-headline { font-family: 'DM Sans', sans-serif; font-size: clamp(36px, 4vw, 60px); font-weight: 600; line-height: 1.1; color: var(--off-white); margin-bottom: 10px; letter-spacing: -0.01em; }
   .hero-headline em { font-style: normal; color: var(--coral); }
   .hero-subhead { font-family: 'Parisienne', cursive; font-size: clamp(38px, 4.5vw, 64px); line-height: 1.1; color: var(--text-light); margin-bottom: 36px; opacity: 0.38; }
@@ -95,7 +102,7 @@
   .what-i-do {
     padding: 100px 64px;
     background-color: var(--tan);                    /* fallback until cork.svg lands */
-    background-image: url('Images/cork.svg');        /* corkboard texture */
+    background-image: url('Images/Cork.svg');        /* corkboard texture */
     background-size: cover;
     background-position: center;
     position: relative;
@@ -104,10 +111,11 @@
   .what-i-do::before { content: ''; position: absolute; inset: 0; background: rgba(3,22,16,0.18); pointer-events: none; }
   .what-i-do-inner { max-width: 1100px; margin: 0 auto; position: relative; z-index: 1; }
   .section-eyebrow { display: inline-block; font-size: 10px; font-weight: 600; letter-spacing: 0.22em; text-transform: uppercase; color: var(--coral); margin-bottom: 52px; }
+  .section-eyebrow::after { content: ''; display: block; width: 32px; height: 1.5px; background: var(--coral); margin-top: 8px; opacity: 0.7; }
   .what-i-do-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 36px; align-items: stretch; }
 
   /* Paper cards pinned to the corkboard */
-  .wid-item { background: var(--white); border-radius: 2px; padding: 52px 32px 36px; display: flex; flex-direction: column; position: relative; overflow: visible;
+  .wid-item { background: #F5F0EB; border-radius: 2px; padding: 52px 32px 36px; display: flex; flex-direction: column; position: relative; overflow: visible;
     box-shadow: 0 6px 24px rgba(3,22,16,0.22), 0 2px 6px rgba(3,22,16,0.14);
     transition: transform 0.2s ease, box-shadow 0.2s ease; }
   .wid-item:hover { transform: translateY(-3px) rotate(0deg); box-shadow: 0 12px 36px rgba(3,22,16,0.28), 0 4px 10px rgba(3,22,16,0.16); }
@@ -132,7 +140,7 @@
   .about-section { background: var(--off-white); padding: 100px 64px; border-top: 1px solid rgba(102,81,65,0.1); }
   .about-inner { max-width: 1100px; margin: 0 auto; display: grid; grid-template-columns: 340px 1fr; gap: 80px; align-items: start; }
   .about-img-wrap { position: relative; }
-  .about-img { width: 100%; height: auto; display: block; border-radius: 50% 40% 50% 40% / 40% 50% 40% 50%; object-fit: cover; object-position: center 15%; aspect-ratio: 1 / 1; filter: saturate(0.88); }
+  .about-img { width: 100%; height: auto; display: block; border-radius: 50% 40% 50% 40% / 40% 50% 40% 50%; object-fit: cover; object-position: center 15%; aspect-ratio: 1 / 1; filter: sepia(20%) saturate(88%); }
   .about-copy .section-eyebrow { margin-bottom: 20px; }
   .about-copy p { font-size: 16px; font-weight: 300; color: var(--text-mid); line-height: 1.85; margin-bottom: 20px; }
   .about-copy p:first-of-type { font-size: 18px; font-weight: 600; color: var(--brown); }
@@ -241,7 +249,7 @@
     <div class="what-i-do-grid">
 
       <div class="wid-item">
-        <img class="tack" src="Images/tack1.png" alt="">
+        <img class="tack" src="Images/Tack1.png" alt="">
         <div class="wid-item-label">Ongoing</div>
         <div class="wid-item-title">1:1 Coaching</div>
         <p class="wid-item-desc">A consistent relationship over weeks and months. Regular sessions, steady momentum, and a space that's entirely yours — to think, process, and grow into the next version of yourself.</p>
@@ -249,7 +257,7 @@
       </div>
 
       <div class="wid-item">
-        <img class="tack" src="Images/tack2.png" alt="">
+        <img class="tack" src="Images/Tack2.png" alt="">
         <div class="wid-item-label">Flexible</div>
         <div class="wid-item-title">A dedicated thinking space for wherever you are right now.</div>
         <p class="wid-item-desc">Not everyone needs a long-term commitment to start. Whether you're in a moment of transition or just need a steady place to think, this is a space that meets you exactly where you are. No agenda but yours.</p>
@@ -257,7 +265,7 @@
       </div>
 
       <div class="wid-item">
-        <img class="tack" src="Images/tack3.png" alt="">
+        <img class="tack" src="Images/Tack3.svg" alt="">
         <div class="wid-item-label">Focused</div>
         <div class="wid-item-title">One intensive day. Something concrete to hold.</div>
         <p class="wid-item-desc">Bring the thing you've been circling — the decision, the pivot, the question that won't quiet down. Half a day together. Full presence. You leave with clarity, not just conversation — and something to act on right away.</p>
