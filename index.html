@@ -39,16 +39,6 @@
   .hero-left { padding: 140px 64px 100px; position: relative; z-index: 2; display: flex; flex-direction: column; justify-content: center; }
   .hero-right-panel { position: relative; display: flex; align-items: center; justify-content: center; padding: 100px 48px 60px 24px; z-index: 2; }
 
-  /* Arch composition — placeholder until Nicole's photo is added.
-     To swap in a photo: replace .hero-arch-wrap with:
-     <img class="hero-split-img" src="images/nicole.jpg" alt="Nicole Then"> */
-  .hero-arch-wrap { position: relative; width: 340px; height: 460px; }
-  .arch { position: absolute; border-radius: 50% 50% 0 0 / 55% 55% 0 0; bottom: 0; }
-  .arch-back  { width: 280px; height: 380px; background: rgba(122,156,181,0.18); left: 50%; transform: translateX(-50%); border: 1px solid rgba(122,156,181,0.28); }
-  .arch-mid   { width: 200px; height: 275px; background: rgba(184,135,42,0.15); left: 50%; transform: translateX(-38%); border: 1px solid rgba(184,135,42,0.22); }
-  .arch-front { width: 130px; height: 175px; background: rgba(242,237,227,0.07); left: 50%; transform: translateX(-66%); border: 1px solid rgba(242,237,227,0.14); }
-
-  /* When a real photo is used: */
   .hero-split-img { max-width: 100%; max-height: 80vh; object-fit: contain; display: block;
     -webkit-mask-image: radial-gradient(ellipse 78% 72% at 58% 54%, black 42%, transparent 85%), linear-gradient(to right, transparent 0%, black 22%);
     mask-image: radial-gradient(ellipse 78% 72% at 58% 54%, black 42%, transparent 85%), linear-gradient(to right, transparent 0%, black 22%);
@@ -76,7 +66,7 @@
   .hero-subhead { animation: fadeUp 0.7s 0.2s ease both; }
   .hero-body { animation: fadeUp 0.7s 0.3s ease both; }
   .cta-group { animation: fadeUp 0.7s 0.4s ease both; }
-  .hero-arch-wrap { animation: fadeUp 0.9s 0.2s ease both; }
+  .hero-split-img { animation: fadeUp 0.9s 0.2s ease both; }
   .hero-glow { animation: fadeIn 1.4s 0.3s ease both; }
 
   /* ── BELOW FOLD ── */
@@ -108,7 +98,7 @@
   .about-inner { max-width: 1100px; margin: 0 auto; display: grid; grid-template-columns: 340px 1fr; gap: 80px; align-items: start; }
   .about-img-wrap { position: relative; }
   .about-img { width: 100%; height: auto; display: block; border-radius: 50% 40% 50% 40% / 40% 50% 40% 50%; object-fit: cover; aspect-ratio: 1 / 1; filter: saturate(0.9); }
-  .about-img-placeholder { width: 100%; aspect-ratio: 1 / 1; border-radius: 50% 40% 50% 40% / 40% 50% 40% 50%; background: linear-gradient(145deg, #E4D4B0 0%, #D0BF90 100%); display: flex; align-items: flex-end; justify-content: center; padding-bottom: 32px; color: rgba(21,34,56,0.38); font-size: 0.75rem; letter-spacing: 0.12em; text-transform: uppercase; }
+  .about-img { object-position: center 15%; }
   .about-copy .section-eyebrow { margin-bottom: 24px; }
   .about-copy p { font-size: 16px; font-weight: 300; color: var(--text-mid); line-height: 1.8; margin-bottom: 20px; }
   .about-copy p:last-child { margin-bottom: 0; }
@@ -144,7 +134,7 @@
     .what-i-do-grid { grid-template-columns: 1fr; gap: 20px; }
     .about-section { padding: 60px 28px; }
     .about-inner { grid-template-columns: 1fr; gap: 40px; }
-    .about-img-placeholder { max-width: 280px; border-radius: 50%; }
+    .about-img { max-width: 280px; border-radius: 50%; }
     .contact-section { padding: 60px 28px; }
   }
 </style>
@@ -178,12 +168,7 @@
     </div>
   </div>
   <div class="hero-right-panel">
-    <!-- Arch composition — replace .hero-arch-wrap with an <img class="hero-split-img"> when Nicole's photo is ready -->
-    <div class="hero-arch-wrap">
-      <div class="arch arch-back"></div>
-      <div class="arch arch-mid"></div>
-      <div class="arch arch-front"></div>
-    </div>
+    <img class="hero-split-img" src="images/nicole.jpg" alt="Nicole Then">
   </div>
 </section>
 
@@ -249,8 +234,7 @@
 <section class="about-section" id="about">
   <div class="about-inner">
     <div class="about-img-wrap">
-      <!-- Replace with: <img class="about-img" src="images/nicole.jpg" alt="Nicole Then"> -->
-      <div class="about-img-placeholder">Nicole Then</div>
+      <img class="about-img" src="images/nicole.jpg" alt="Nicole Then">
     </div>
     <div class="about-copy">
       <div class="section-eyebrow">About</div>
@@ -269,7 +253,7 @@
     <div class="section-eyebrow">Contact</div>
     <h2>Let's talk.</h2>
     <p class="contact-lead">Whether you're ready to start or just want to learn more, this is the place. A discovery call is always free — no pressure, no pitch.</p>
-    <form class="contact-form" action="https://formspree.io/f/REPLACE_WITH_YOUR_FORMSPREE_ID" method="POST">
+    <form class="contact-form" action="https://formspree.io/f/xdapllwd" method="POST">
       <input type="text" name="name" placeholder="Name" required>
       <input type="email" name="email" placeholder="Email" required>
       <input type="text" name="situation" placeholder="What's your current situation? (optional)">
