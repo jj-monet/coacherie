@@ -1,305 +1,292 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>The Coacherie | Nicole Then</title>
-  <meta name="description" content="Thoughtful, personalized coaching for professionals and leaders ready to grow with intention. Work with Nicole Then at The Coacherie." />
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500&family=Great+Vibes&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="styles.css" />
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Coacherie | Nicole Then</title>
+<meta property="og:title" content="The Coacherie">
+<meta property="og:description" content="Personal coaching for life's defining moments. Work with Nicole Then.">
+<meta property="og:type" content="website">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500&family=Great+Vibes&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --navy: #152238; --vanilla: #F2EDE3; --white: #FAFAF8;
+    --caramel: #B8872A; --caramel-bright: #D4A040;
+    --sepia: #EDD9A0; --saddle: #8A6220;
+    --pigeon: #7A9CB5; --pigeon-light: #9DBBD1;
+    --text-light: #C4B79A; --text-mid: #6B6357;
+  }
+  body { font-family: 'DM Sans', sans-serif; background: var(--white); color: var(--navy); overflow-x: hidden; }
+
+  /* ── NAV ── */
+  nav { position: absolute; top: 0; left: 0; right: 0; z-index: 10; display: flex; justify-content: space-between; align-items: center; padding: 28px 64px; }
+  .nav-left { display: flex; align-items: center; gap: 14px; }
+  .nav-logo { font-family: 'Great Vibes', cursive; font-size: 2.1rem; color: var(--text-light); text-decoration: none; opacity: 0.9; transition: opacity 0.2s; line-height: 1; }
+  .nav-logo:hover { opacity: 1; }
+  .nav-tagline { font-size: 11px; font-weight: 400; letter-spacing: 0.12em; text-transform: uppercase; color: var(--text-light); opacity: 0.45; padding-left: 14px; border-left: 1px solid rgba(196,183,154,0.3); }
+  .nav-links { display: flex; gap: 40px; list-style: none; }
+  .nav-links a { font-size: 13px; font-weight: 400; letter-spacing: 0.06em; text-transform: uppercase; color: var(--text-light); text-decoration: none; opacity: 0.7; transition: opacity 0.2s; }
+  .nav-links a:hover { opacity: 1; }
+
+  /* ── HERO ── */
+  .hero { position: relative; min-height: 100vh; display: grid; grid-template-columns: 1fr 1fr; overflow: hidden; background: var(--navy); }
+  .hero-glow { position: absolute; inset: 0; z-index: 1; pointer-events: none;
+    background: radial-gradient(ellipse 55% 60% at 74% 54%, rgba(122,156,181,0.20) 0%, transparent 70%),
+                radial-gradient(ellipse 35% 40% at 14% 76%, rgba(184,135,42,0.09) 0%, transparent 60%); }
+  .hero-left { padding: 140px 64px 100px; position: relative; z-index: 2; display: flex; flex-direction: column; justify-content: center; }
+  .hero-right-panel { position: relative; display: flex; align-items: center; justify-content: center; padding: 100px 48px 60px 24px; z-index: 2; }
+
+  /* Arch composition — placeholder until Nicole's photo is added.
+     To swap in a photo: replace .hero-arch-wrap with:
+     <img class="hero-split-img" src="images/nicole.jpg" alt="Nicole Then"> */
+  .hero-arch-wrap { position: relative; width: 340px; height: 460px; }
+  .arch { position: absolute; border-radius: 50% 50% 0 0 / 55% 55% 0 0; bottom: 0; }
+  .arch-back  { width: 280px; height: 380px; background: rgba(122,156,181,0.18); left: 50%; transform: translateX(-50%); border: 1px solid rgba(122,156,181,0.28); }
+  .arch-mid   { width: 200px; height: 275px; background: rgba(184,135,42,0.15); left: 50%; transform: translateX(-38%); border: 1px solid rgba(184,135,42,0.22); }
+  .arch-front { width: 130px; height: 175px; background: rgba(242,237,227,0.07); left: 50%; transform: translateX(-66%); border: 1px solid rgba(242,237,227,0.14); }
+
+  /* When a real photo is used: */
+  .hero-split-img { max-width: 100%; max-height: 80vh; object-fit: contain; display: block;
+    -webkit-mask-image: radial-gradient(ellipse 78% 72% at 58% 54%, black 42%, transparent 85%), linear-gradient(to right, transparent 0%, black 22%);
+    mask-image: radial-gradient(ellipse 78% 72% at 58% 54%, black 42%, transparent 85%), linear-gradient(to right, transparent 0%, black 22%);
+    -webkit-mask-composite: source-in; mask-composite: intersect; }
+
+  .eyebrow { display: inline-block; font-size: 11px; font-weight: 500; letter-spacing: 0.2em; text-transform: uppercase; color: var(--sepia); margin-bottom: 28px; }
+  .hero-headline { font-family: 'Cormorant Garamond', serif; font-size: clamp(42px, 4.5vw, 68px); font-weight: 500; line-height: 1.05; color: #fff; margin-bottom: 12px; }
+  .hero-headline em { font-style: italic; }
+  .hero-headline em.caramel { color: var(--caramel-bright); }
+  .hero-headline em.pigeon { color: var(--pigeon-light); }
+  .hero-subhead { font-family: 'Cormorant Garamond', serif; font-size: clamp(42px, 4.5vw, 68px); font-weight: 300; font-style: italic; line-height: 1.05; color: var(--text-light); margin-bottom: 36px; opacity: 0.45; }
+  .hero-body { font-size: 17px; font-weight: 300; line-height: 1.7; color: var(--text-light); max-width: 480px; margin-bottom: 52px; opacity: 0.8; }
+  .hero-body strong { color: #fff; font-weight: 300; }
+  .cta-group { display: flex; align-items: center; gap: 24px; flex-wrap: wrap; }
+  .btn-primary { background: var(--caramel); color: #fff; font-family: 'DM Sans', sans-serif; font-size: 14px; font-weight: 500; letter-spacing: 0.05em; padding: 16px 36px; border: none; border-radius: 3px; cursor: pointer; text-decoration: none; display: inline-block; transition: background 0.2s, transform 0.15s; }
+  .btn-primary:hover { background: var(--caramel-bright); transform: translateY(-1px); }
+  .btn-secondary { color: var(--sepia); font-size: 14px; font-weight: 400; text-decoration: none; border-bottom: 1px solid rgba(237,217,160,0.3); padding-bottom: 2px; transition: color 0.2s, border-color 0.2s; }
+  .btn-secondary:hover { color: #fff; border-color: rgba(237,217,160,0.7); }
+
+  /* ── Animations ── */
+  @keyframes fadeUp { from { opacity: 0; transform: translateY(18px); } to { opacity: 1; transform: translateY(0); } }
+  @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+  .eyebrow { animation: fadeUp 0.6s ease both; }
+  .hero-headline { animation: fadeUp 0.7s 0.1s ease both; }
+  .hero-subhead { animation: fadeUp 0.7s 0.2s ease both; }
+  .hero-body { animation: fadeUp 0.7s 0.3s ease both; }
+  .cta-group { animation: fadeUp 0.7s 0.4s ease both; }
+  .hero-arch-wrap { animation: fadeUp 0.9s 0.2s ease both; }
+  .hero-glow { animation: fadeIn 1.4s 0.3s ease both; }
+
+  /* ── BELOW FOLD ── */
+  .below-fold { background: var(--white); padding: 80px 64px; }
+  .below-fold-inner { max-width: 1100px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 64px; align-items: start; }
+  .proof-label { font-size: 11px; font-weight: 500; letter-spacing: 0.18em; text-transform: uppercase; color: var(--caramel); margin-bottom: 16px; }
+  .proof-stat { font-family: 'Cormorant Garamond', serif; font-size: 36px; font-weight: 400; color: var(--navy); line-height: 1.15; margin-bottom: 12px; }
+  .proof-desc { font-size: 14px; font-weight: 300; color: var(--text-mid); line-height: 1.7; }
+
+  /* ── QUOTE STRIP ── */
+  .quote-strip { background: var(--vanilla); border-top: 1px solid rgba(184,135,42,0.15); border-bottom: 1px solid rgba(184,135,42,0.15); padding: 36px 64px; display: flex; align-items: center; justify-content: space-between; gap: 24px; }
+  .quote-strip p { font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 20px; font-weight: 300; color: var(--saddle); max-width: 640px; line-height: 1.5; }
+  .quote-strip span { font-size: 12px; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text-mid); white-space: nowrap; }
+
+  /* ── WHAT I DO / SERVICES ── */
+  .what-i-do { background: var(--white); padding: 100px 64px; }
+  .what-i-do-inner { max-width: 1100px; margin: 0 auto; }
+  .section-eyebrow { display: inline-block; font-size: 11px; font-weight: 500; letter-spacing: 0.2em; text-transform: uppercase; color: var(--caramel); margin-bottom: 56px; }
+  .what-i-do-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 28px; align-items: stretch; }
+  .wid-item { background: #fff; border: 1px solid #DDD4C0; border-top: 3px solid var(--caramel); border-radius: 4px; padding: 36px 32px; display: flex; flex-direction: column; }
+  .wid-item-label { font-size: 11px; font-weight: 500; letter-spacing: 0.18em; text-transform: uppercase; color: var(--caramel); margin-bottom: 12px; }
+  .wid-item-title { font-family: 'Cormorant Garamond', serif; font-size: 26px; font-weight: 500; color: var(--navy); margin-bottom: 16px; line-height: 1.2; }
+  .wid-item-desc { font-size: 15px; font-weight: 300; color: var(--text-mid); line-height: 1.7; flex: 1; }
+  .wid-link { display: block; margin-top: 28px; background: var(--caramel); color: #fff; font-family: 'DM Sans', sans-serif; font-size: 14px; font-weight: 500; letter-spacing: 0.05em; text-decoration: none; padding: 14px 24px; border-radius: 3px; text-align: center; transition: background 0.2s, transform 0.15s; }
+  .wid-link:hover { background: var(--caramel-bright); transform: translateY(-1px); }
+
+  /* ── ABOUT ── */
+  .about-section { background: var(--vanilla); padding: 100px 64px; border-top: 1px solid #DDD4C0; }
+  .about-inner { max-width: 1100px; margin: 0 auto; display: grid; grid-template-columns: 340px 1fr; gap: 80px; align-items: start; }
+  .about-img-wrap { position: relative; }
+  .about-img { width: 100%; height: auto; display: block; border-radius: 50% 40% 50% 40% / 40% 50% 40% 50%; object-fit: cover; aspect-ratio: 1 / 1; filter: saturate(0.9); }
+  .about-img-placeholder { width: 100%; aspect-ratio: 1 / 1; border-radius: 50% 40% 50% 40% / 40% 50% 40% 50%; background: linear-gradient(145deg, #E4D4B0 0%, #D0BF90 100%); display: flex; align-items: flex-end; justify-content: center; padding-bottom: 32px; color: rgba(21,34,56,0.38); font-size: 0.75rem; letter-spacing: 0.12em; text-transform: uppercase; }
+  .about-copy .section-eyebrow { margin-bottom: 24px; }
+  .about-copy p { font-size: 16px; font-weight: 300; color: var(--text-mid); line-height: 1.8; margin-bottom: 20px; }
+  .about-copy p:last-child { margin-bottom: 0; }
+  .about-copy p em { color: rgba(107,99,87,0.55); font-style: italic; }
+
+  /* ── CONTACT ── */
+  .contact-section { background: var(--white); padding: 100px 64px; border-top: 1px solid #DDD4C0; }
+  .contact-inner { max-width: 680px; margin: 0 auto; }
+  .contact-section h2 { font-family: 'Cormorant Garamond', serif; font-size: clamp(32px, 3vw, 48px); font-weight: 400; color: var(--navy); margin-bottom: 16px; }
+  .contact-lead { font-size: 16px; font-weight: 300; color: var(--text-mid); line-height: 1.7; margin-bottom: 48px; }
+  .contact-form { display: flex; flex-direction: column; gap: 20px; }
+  .contact-form input, .contact-form textarea { font-family: 'DM Sans', sans-serif; font-size: 15px; font-weight: 300; color: var(--navy); background: #fff; border: 1px solid #DDD4C0; border-radius: 3px; padding: 14px 18px; width: 100%; outline: none; transition: border-color 0.2s; }
+  .contact-form input:focus, .contact-form textarea:focus { border-color: var(--caramel); }
+  .contact-form textarea { resize: vertical; min-height: 140px; }
+  .contact-form select { font-family: 'DM Sans', sans-serif; font-size: 15px; font-weight: 300; color: var(--navy); background: #fff; border: 1px solid #DDD4C0; border-radius: 3px; padding: 14px 18px; width: 100%; outline: none; transition: border-color 0.2s; appearance: none; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%236B6357' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right 18px center; }
+  .contact-form select:focus { border-color: var(--caramel); }
+  .contact-form select option[value=""] { color: #aaa; }
+  .btn-caramel { background: var(--caramel); color: #fff; font-family: 'DM Sans', sans-serif; font-size: 14px; font-weight: 500; letter-spacing: 0.05em; padding: 16px 36px; border: none; border-radius: 3px; cursor: pointer; transition: background 0.2s, transform 0.15s; align-self: flex-start; }
+  .btn-caramel:hover { background: var(--caramel-bright); transform: translateY(-1px); }
+  .contact-social { display: inline-block; margin-top: 32px; font-size: 14px; font-weight: 400; color: var(--caramel); text-decoration: none; border-bottom: 1px solid rgba(184,135,42,0.3); padding-bottom: 2px; transition: color 0.2s, border-color 0.2s; }
+  .contact-social:hover { color: var(--caramel-bright); border-color: rgba(184,135,42,0.7); }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 900px) {
+    nav { padding: 24px 28px; } .nav-links { display: none; } .nav-tagline { display: none; }
+    .hero { grid-template-columns: 1fr; min-height: auto; }
+    .hero-left { padding: 120px 28px 60px; }
+    .hero-right-panel { display: none; }
+    .below-fold { padding: 60px 28px; }
+    .below-fold-inner { grid-template-columns: 1fr; gap: 40px; }
+    .quote-strip { padding: 28px; flex-direction: column; align-items: flex-start; }
+    .what-i-do { padding: 60px 28px; }
+    .what-i-do-grid { grid-template-columns: 1fr; gap: 20px; }
+    .about-section { padding: 60px 28px; }
+    .about-inner { grid-template-columns: 1fr; gap: 40px; }
+    .about-img-placeholder { max-width: 280px; border-radius: 50%; }
+    .contact-section { padding: 60px 28px; }
+  }
+</style>
 </head>
 <body>
 
-  <!-- ═══════════════════════════════ NAV ═══════════════════════════════ -->
-  <header class="site-header" id="top">
-    <nav class="nav container">
-      <a href="#top" class="nav-logo">The Coacherie</a>
-      <ul class="nav-links" id="nav-links">
-        <li><a href="#about">About</a></li>
-        <li><a href="#services">Services</a></li>
-        <li><a href="#approach">Approach</a></li>
-        <li><a href="#testimonials">Testimonials</a></li>
-        <li><a href="#contact" class="nav-cta">Work With Me</a></li>
-      </ul>
-      <button class="nav-toggle" id="nav-toggle" aria-label="Open menu" aria-expanded="false">
-        <span></span><span></span><span></span>
-      </button>
-    </nav>
-  </header>
+<!-- ═══════════ NAV ═══════════ -->
+<nav>
+  <div class="nav-left">
+    <a href="#top" class="nav-logo">The Coacherie</a>
+    <span class="nav-tagline">Nicole Then</span>
+  </div>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#services">Services</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
 
-  <main>
-
-    <!-- ══════════════════════════════ HERO ══════════════════════════════ -->
-    <section class="hero" id="hero">
-      <div class="hero-inner container">
-        <p class="script-accent">coaching with intention</p>
-        <h1>Find Your Footing.<br />Lead with Clarity.</h1>
-        <p class="hero-sub">
-          Thoughtful, personalized coaching for professionals and leaders
-          at meaningful crossroads — where clarity matters most.
-        </p>
-        <a href="#contact" class="btn btn-primary">Book a Discovery Call</a>
-      </div>
-    </section>
-
-    <!-- ════════════════════════════ INTRO STRIP ═════════════════════════ -->
-    <section class="intro-strip">
-      <div class="container">
-        <p class="intro-quote">
-          <em>"You don't need to have it all figured out. You just need a steady place to think."</em>
-        </p>
-      </div>
-    </section>
-
-    <!-- ══════════════════════════════ ABOUT ══════════════════════════════ -->
-    <section class="about section" id="about">
-      <div class="container about-grid">
-        <div class="about-image">
-          <div class="image-frame">
-            <div class="image-placeholder">
-              <!-- Nicole's photo goes here -->
-              <span>Nicole Then</span>
-            </div>
-          </div>
-        </div>
-        <div class="about-text">
-          <p class="script-accent">meet your coach</p>
-          <h2>Hello, I'm Nicole.</h2>
-          <p>
-            I'm a certified coach working with professionals and leaders at meaningful
-            crossroads — the kind of moments where clarity matters most and the path
-            forward isn't always obvious.
-          </p>
-          <p>
-            Whether you're stepping into a new role, navigating a career pivot, or simply
-            trying to lead in a way that feels true to who you are, I'm here to help you
-            think clearly, move intentionally, and trust yourself in the process.
-          </p>
-          <p>
-            <em>More about Nicole's background, training, and philosophy coming soon.</em>
-          </p>
-          <a href="#contact" class="btn btn-secondary">Let's Connect</a>
-        </div>
-      </div>
-    </section>
-
-    <!-- ═════════════════════════════ SERVICES ════════════════════════════ -->
-    <section class="services section section-tinted" id="services">
-      <div class="container">
-        <div class="section-header">
-          <p class="script-accent">how we work together</p>
-          <h2>Coaching Offerings</h2>
-          <p class="section-sub">
-            Each engagement is tailored to where you are and where you want to go.
-          </p>
-        </div>
-        <div class="services-grid">
-
-          <div class="service-card">
-            <div class="service-mark">◇</div>
-            <h3>1:1 Coaching</h3>
-            <p>
-              A dedicated space for you to think, process, and plan. Ongoing
-              sessions built around your goals, your pace, and your real life.
-            </p>
-            <a href="#contact" class="link-arrow">Inquire →</a>
-          </div>
-
-          <div class="service-card">
-            <div class="service-mark">◇</div>
-            <h3>Leadership Coaching</h3>
-            <p>
-              For managers and emerging leaders who want to lead with more
-              confidence, authenticity, and ease — without losing themselves in the role.
-            </p>
-            <a href="#contact" class="link-arrow">Inquire →</a>
-          </div>
-
-          <div class="service-card">
-            <div class="service-mark">◇</div>
-            <h3>Career Transitions</h3>
-            <p>
-              Navigating a role change, a pivot, or an "I don't know what's next"
-              moment? Let's map it out together with clarity and intention.
-            </p>
-            <a href="#contact" class="link-arrow">Inquire →</a>
-          </div>
-
-          <div class="service-card">
-            <div class="service-mark">◇</div>
-            <h3>Intensive Day</h3>
-            <p>
-              A focused, half-day or full-day session for when you need deep
-              momentum — planning, clarity, and direction in one dedicated space.
-            </p>
-            <a href="#contact" class="link-arrow">Inquire →</a>
-          </div>
-
-        </div>
-      </div>
-    </section>
-
-    <!-- ═════════════════════════════ APPROACH ════════════════════════════ -->
-    <section class="approach section" id="approach">
-      <div class="container">
-        <div class="section-header">
-          <p class="script-accent">the coacherie way</p>
-          <h2>What to Expect</h2>
-          <p class="section-sub">
-            Every client, every conversation is different. A few things stay constant.
-          </p>
-        </div>
-        <div class="pillars-grid">
-
-          <div class="pillar">
-            <h4>Steady</h4>
-            <p>
-              A calm, consistent presence — so you have the stability to do
-              your most honest thinking.
-            </p>
-          </div>
-
-          <div class="pillar">
-            <h4>Personal</h4>
-            <p>
-              No templates, no scripts. Every conversation is shaped entirely
-              by what you bring to it.
-            </p>
-          </div>
-
-          <div class="pillar">
-            <h4>Grounded</h4>
-            <p>
-              Rooted in real life. Practical, thoughtful, and built for the
-              actual complexity of your world.
-            </p>
-          </div>
-
-          <div class="pillar">
-            <h4>Warm</h4>
-            <p>
-              A space where you can be honest, a little messy, and fully
-              yourself — without judgment.
-            </p>
-          </div>
-
-        </div>
-      </div>
-    </section>
-
-    <!-- ═══════════════════════════ TESTIMONIALS ══════════════════════════ -->
-    <section class="testimonials section" id="testimonials">
-      <div class="container">
-        <div class="section-header">
-          <p class="script-accent light">from clients</p>
-          <h2>What People Say</h2>
-        </div>
-        <div class="testimonials-grid">
-
-          <blockquote class="testimonial">
-            <p>
-              "Working with Nicole gave me the clarity and confidence I didn't know
-              I was missing. I left every session with a clearer sense of direction."
-            </p>
-            <cite>— Client Name, Title</cite>
-          </blockquote>
-
-          <blockquote class="testimonial">
-            <p>
-              "She has a remarkable ability to ask the right question at exactly the
-              right moment. I always walked away with something I hadn't considered."
-            </p>
-            <cite>— Client Name, Company</cite>
-          </blockquote>
-
-          <blockquote class="testimonial">
-            <p>
-              "The Coacherie felt like the first place I could actually think out loud
-              without needing to have all the answers. That made all the difference."
-            </p>
-            <cite>— Client Name, Industry</cite>
-          </blockquote>
-
-        </div>
-      </div>
-    </section>
-
-    <!-- ══════════════════════════════ CONTACT ════════════════════════════ -->
-    <section class="contact section section-tinted" id="contact">
-      <div class="container contact-inner">
-        <p class="script-accent">let's begin</p>
-        <h2>Start the Conversation</h2>
-        <p class="contact-sub">
-          Book a complimentary 30-minute discovery call to see if we're a good fit.
-          No pressure, no pitch — just a real conversation.
-        </p>
-        <a href="mailto:hello@thecoacherie.com" class="btn btn-primary">Book a Discovery Call</a>
-        <p class="contact-direct">
-          Or reach out at
-          <a href="mailto:hello@thecoacherie.com">hello@thecoacherie.com</a>
-        </p>
-      </div>
-    </section>
-
-  </main>
-
-  <!-- ═══════════════════════════════ FOOTER ═══════════════════════════════ -->
-  <footer class="footer">
-    <div class="container footer-inner">
-      <a href="#top" class="footer-logo">The Coacherie</a>
-      <nav class="footer-nav" aria-label="Footer navigation">
-        <a href="#about">About</a>
-        <a href="#services">Services</a>
-        <a href="#approach">Approach</a>
-        <a href="#testimonials">Testimonials</a>
-        <a href="#contact">Work With Me</a>
-      </nav>
-      <p class="footer-copy">© 2026 The Coacherie &nbsp;·&nbsp; Nicole Then &nbsp;·&nbsp; All rights reserved</p>
+<!-- ═══════════ HERO ═══════════ -->
+<section class="hero" id="top">
+  <div class="hero-glow"></div>
+  <div class="hero-left">
+    <span class="eyebrow">Coaching for life's defining moments</span>
+    <h1 class="hero-headline">You know what needs<br>to change. Let's <em class="caramel">begin.</em></h1>
+    <div class="hero-subhead">You don't have to do this alone.</div>
+    <p class="hero-body">Life's transitions — chosen or not — have a way of asking something of us. <strong>Coaching creates the space</strong> to think clearly, move with intention, and trust the person you're becoming.</p>
+    <div class="cta-group">
+      <a href="#contact" class="btn-primary">Book a Discovery Call</a>
+      <a href="#services" class="btn-secondary">See How I Work &rarr;</a>
     </div>
-  </footer>
+  </div>
+  <div class="hero-right-panel">
+    <!-- Arch composition — replace .hero-arch-wrap with an <img class="hero-split-img"> when Nicole's photo is ready -->
+    <div class="hero-arch-wrap">
+      <div class="arch arch-back"></div>
+      <div class="arch arch-mid"></div>
+      <div class="arch arch-front"></div>
+    </div>
+  </div>
+</section>
 
-  <script>
-    // ── Mobile nav toggle ──────────────────────────────────────────────────
-    const toggle = document.getElementById('nav-toggle');
-    const navLinks = document.getElementById('nav-links');
+<!-- ═══════════ BELOW FOLD ═══════════ -->
+<section class="below-fold">
+  <div class="below-fold-inner">
+    <div>
+      <div class="proof-label">Clarity</div>
+      <div class="proof-stat">Untangle the noise.</div>
+      <p class="proof-desc">When everything feels tangled, coaching cuts through to what actually matters — and gives you permission to set the rest down.</p>
+    </div>
+    <div>
+      <div class="proof-label">Direction</div>
+      <div class="proof-stat">Move with intention.</div>
+      <p class="proof-desc">Not just out of where you are, but toward where you actually want to be. With a path that's yours — not someone else's idea of what should come next.</p>
+    </div>
+    <div>
+      <div class="proof-label">Confidence</div>
+      <div class="proof-stat">Trust yourself again.</div>
+      <p class="proof-desc">The person best equipped to navigate your life is you. Coaching helps you remember — and believe — that.</p>
+    </div>
+  </div>
+</section>
 
-    toggle.addEventListener('click', () => {
-      const open = navLinks.classList.toggle('open');
-      toggle.setAttribute('aria-expanded', open);
-    });
+<!-- ═══════════ QUOTE STRIP ═══════════ -->
+<div class="quote-strip">
+  <p>"The goal isn't a better plan. It's a better relationship with yourself."</p>
+  <span>The Coacherie</span>
+</div>
 
-    // Close mobile nav on link click
-    navLinks.querySelectorAll('a').forEach(link => {
-      link.addEventListener('click', () => {
-        navLinks.classList.remove('open');
-        toggle.setAttribute('aria-expanded', false);
-      });
-    });
+<!-- ═══════════ SERVICES ═══════════ -->
+<section class="what-i-do" id="services">
+  <div class="what-i-do-inner">
+    <div class="section-eyebrow">Services</div>
+    <div class="what-i-do-grid">
 
-    // ── Sticky header shadow ───────────────────────────────────────────────
-    const header = document.querySelector('.site-header');
-    window.addEventListener('scroll', () => {
-      header.classList.toggle('scrolled', window.scrollY > 20);
-    });
+      <div class="wid-item">
+        <div class="wid-item-label">Ongoing</div>
+        <div class="wid-item-title">1:1 Coaching</div>
+        <p class="wid-item-desc">A consistent relationship over weeks and months. Regular sessions, steady momentum, and a space that's entirely yours — to think, process, and grow into the next version of yourself.</p>
+        <a href="#contact" class="wid-link">Get in Touch &rarr;</a>
+      </div>
 
-    // ── Active nav link on scroll ──────────────────────────────────────────
-    const sections = document.querySelectorAll('section[id]');
-    const links = document.querySelectorAll('.nav-links a');
+      <div class="wid-item">
+        <div class="wid-item-label">Flexible</div>
+        <div class="wid-item-title">A dedicated thinking space for wherever you are right now.</div>
+        <p class="wid-item-desc">Not everyone needs a long-term commitment to start. Whether you're in a moment of transition or just need a steady place to think, this is a space that meets you exactly where you are. No agenda but yours.</p>
+        <a href="#contact" class="wid-link">Book a Session &rarr;</a>
+      </div>
 
-    const observer = new IntersectionObserver(entries => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          links.forEach(l => l.classList.remove('active'));
-          const active = document.querySelector(`.nav-links a[href="#${entry.target.id}"]`);
-          if (active) active.classList.add('active');
-        }
-      });
-    }, { rootMargin: '-40% 0px -55% 0px' });
+      <div class="wid-item">
+        <div class="wid-item-label">Focused</div>
+        <div class="wid-item-title">One intensive day. Something concrete to hold.</div>
+        <p class="wid-item-desc">Bring the thing you've been circling — the decision, the pivot, the question that won't quiet down. Half a day together. Full presence. You leave with clarity, not just conversation — and something to act on right away.</p>
+        <a href="#contact" class="wid-link">Schedule a Call &rarr;</a>
+      </div>
 
-    sections.forEach(s => observer.observe(s));
-  </script>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════ ABOUT ═══════════ -->
+<section class="about-section" id="about">
+  <div class="about-inner">
+    <div class="about-img-wrap">
+      <!-- Replace with: <img class="about-img" src="images/nicole.jpg" alt="Nicole Then"> -->
+      <div class="about-img-placeholder">Nicole Then</div>
+    </div>
+    <div class="about-copy">
+      <div class="section-eyebrow">About</div>
+      <p>Hey there, I'm Nicole.</p>
+      <p>I work with people who are navigating change — sometimes the big, visible kind, and sometimes the quieter, harder-to-name kind. The kind where everything looks fine from the outside, but something inside you knows it isn't quite right yet.</p>
+      <p>My work is grounded in the belief that you already have most of what you need. The job isn't to fix you — it's to help you hear yourself more clearly, so you can move forward with more confidence, more intention, and more of yourself intact.</p>
+      <p>Whether you're rethinking a role, a relationship, a routine, or the whole picture — this is a space built for that.</p>
+      <p><em>More about Nicole's background, certifications, and story coming soon.</em></p>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════ CONTACT ═══════════ -->
+<section class="contact-section" id="contact">
+  <div class="contact-inner">
+    <div class="section-eyebrow">Contact</div>
+    <h2>Let's talk.</h2>
+    <p class="contact-lead">Whether you're ready to start or just want to learn more, this is the place. A discovery call is always free — no pressure, no pitch.</p>
+    <form class="contact-form" action="https://formspree.io/f/REPLACE_WITH_YOUR_FORMSPREE_ID" method="POST">
+      <input type="text" name="name" placeholder="Name" required>
+      <input type="email" name="email" placeholder="Email" required>
+      <input type="text" name="situation" placeholder="What's your current situation? (optional)">
+      <select name="how_found">
+        <option value="" disabled selected>How did you find me?</option>
+        <option value="referral">Referral</option>
+        <option value="instagram">Instagram</option>
+        <option value="linkedin">LinkedIn</option>
+        <option value="search">Online search</option>
+        <option value="other">Other</option>
+      </select>
+      <textarea name="message" placeholder="What are you working through?" required></textarea>
+      <button type="submit" class="btn-caramel">Send &rarr;</button>
+    </form>
+    <a href="https://www.instagram.com/" class="contact-social" target="_blank" rel="noopener">Connect on Instagram</a>
+  </div>
+</section>
 
 </body>
 </html>
