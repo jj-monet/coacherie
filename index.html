@@ -42,14 +42,13 @@
 
   /* ── HERO ── */
   .hero { position: relative; min-height: 100vh; display: grid; grid-template-columns: 1fr 1fr; overflow: hidden;
-    /* Diagonal linen stripe — off-white and tan from the palette */
     background-color: var(--off-white);
     background-image:
-      /* Linen weave crosshatch — very faint, adds fabric texture */
-      repeating-linear-gradient(90deg, rgba(102,81,65,0.04) 0px, rgba(102,81,65,0.04) 1px, transparent 1px, transparent 7px),
-      repeating-linear-gradient( 0deg, rgba(102,81,65,0.04) 0px, rgba(102,81,65,0.04) 1px, transparent 1px, transparent 7px),
-      /* Diagonal stripes */
-      repeating-linear-gradient(-45deg, #F5F0EB 0px, #F5F0EB 34px, #D2BDAC 34px, #D2BDAC 68px);
+      /* Natural fiber texture — anisotropic fractalNoise (different X/Y freq)
+         creates visible horizontal threads rather than a uniform grid */
+      url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='400'%3E%3Cfilter id='l'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.45 0.11' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='400' height='400' filter='url(%23l)' opacity='0.11'/%3E%3C/svg%3E"),
+      /* Vertical stripes — wider, straight up and down */
+      repeating-linear-gradient(to right, #F5F0EB 0px, #F5F0EB 62px, #D2BDAC 62px, #D2BDAC 124px);
   }
 
   /* Subtle edge vignette to focus attention on the text */
