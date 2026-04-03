@@ -48,26 +48,25 @@
     background:
       radial-gradient(ellipse 70% 60% at 75% 55%, rgba(80,96,64,0.35) 0%, transparent 70%),
       radial-gradient(ellipse 45% 50% at 10% 80%, rgba(196,152,64,0.07) 0%, transparent 60%); }
-  .hero-left { padding: 140px 64px 100px; position: relative; z-index: 2; display: flex; flex-direction: column; justify-content: center; }
-  .hero-right-panel { position: relative; display: flex; align-items: center; justify-content: center; padding: 100px 48px 60px 24px; z-index: 2; }
-  .hero-split-img { max-width: 100%; max-height: 84vh; object-fit: cover; object-position: center top; display: block;
-    -webkit-mask-image: linear-gradient(to right, transparent 0%, black 18%, black 85%, transparent 100%),
-                        linear-gradient(to bottom, transparent 0%, black 8%, black 90%, transparent 100%);
-    mask-image: linear-gradient(to right, transparent 0%, black 18%, black 85%, transparent 100%),
-                linear-gradient(to bottom, transparent 0%, black 8%, black 90%, transparent 100%);
+  .hero-left { padding: 148px 64px 100px; position: relative; z-index: 2; display: flex; flex-direction: column; justify-content: center; }
+  .hero-right-panel { position: relative; display: flex; align-items: center; justify-content: center; padding: 100px 48px 80px 16px; z-index: 2; }
+  .hero-split-img { max-width: 100%; max-height: 80vh; object-fit: cover; object-position: center 15%; display: block;
+    -webkit-mask-image: linear-gradient(to right, transparent 0%, black 22%, black 84%, transparent 100%),
+                        linear-gradient(to bottom, transparent 0%, black 6%, black 92%, transparent 100%);
+    mask-image: linear-gradient(to right, transparent 0%, black 22%, black 84%, transparent 100%),
+                linear-gradient(to bottom, transparent 0%, black 6%, black 92%, transparent 100%);
     -webkit-mask-composite: source-in; mask-composite: intersect; }
 
   /* Eyebrow — line to the left of text */
-  .eyebrow { display: flex; align-items: center; gap: 14px; font-size: 11px; font-weight: 500; letter-spacing: 0.22em; text-transform: uppercase; color: var(--sienna); margin-bottom: 32px; }
+  .eyebrow { display: flex; align-items: center; gap: 14px; font-size: 11px; font-weight: 500; letter-spacing: 0.22em; text-transform: uppercase; color: var(--sienna); margin-bottom: 36px; }
   .eyebrow::before { content: ''; display: block; width: 32px; height: 1.5px; background: var(--sienna); flex-shrink: 0; }
 
-  .hero-headline { font-family: 'Playfair Display', serif; font-size: clamp(40px, 5.5vw, 76px); font-weight: 900; line-height: 1.05; color: var(--linen); margin-bottom: 10px; }
-  .hero-headline em { font-style: italic; color: var(--sienna); font-weight: 700; }
-  .hero-subhead { font-family: 'Playfair Display', serif; font-style: italic; font-size: clamp(20px, 2.2vw, 30px); font-weight: 400; line-height: 1.3; color: var(--honey); margin-bottom: 36px; opacity: 0.85; }
-  .hero-body { font-size: 16px; font-weight: 300; line-height: 1.75; color: var(--text-on-dark); max-width: 460px; margin-bottom: 52px; }
-  .hero-body strong { color: var(--linen); font-weight: 500; }
+  .hero-headline { font-family: 'Playfair Display', serif; font-size: clamp(38px, 5vw, 68px); font-weight: 900; line-height: 1.1; color: var(--linen); margin-bottom: 18px; }
+  .hero-subhead { font-family: 'Playfair Display', serif; font-style: italic; font-size: clamp(18px, 2vw, 26px); font-weight: 400; line-height: 1.4; color: var(--honey); margin-bottom: 32px; opacity: 0.88; }
+  .hero-body { font-size: 15.5px; font-weight: 300; line-height: 1.8; color: var(--text-on-dark); max-width: 460px; margin-bottom: 44px; }
 
-  .cta-group { display: flex; align-items: center; gap: 24px; flex-wrap: wrap; }
+  .cta-group { display: flex; align-items: center; gap: 24px; flex-wrap: wrap; margin-bottom: 22px; }
+  .hero-reassurance { font-size: 12px; font-weight: 300; letter-spacing: 0.04em; color: rgba(234,224,212,0.42); }
   .btn-primary { background: var(--sienna); color: var(--linen); font-family: 'DM Sans', sans-serif; font-size: 13px; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase; padding: 16px 36px; border: none; border-radius: 2px; cursor: pointer; text-decoration: none; display: inline-block; transition: background 0.2s, transform 0.15s; }
   .btn-primary:hover { background: #9A4C2C; transform: translateY(-1px); }
   .btn-secondary { color: rgba(234,224,212,0.72); font-size: 12px; font-weight: 400; letter-spacing: 0.1em; text-transform: uppercase; text-decoration: none; border-bottom: 1px solid rgba(234,224,212,0.28); padding-bottom: 2px; transition: color 0.2s, border-color 0.2s; }
@@ -187,17 +186,18 @@
 <section class="hero" id="top">
   <div class="hero-glow"></div>
   <div class="hero-left">
-    <span class="eyebrow">Coaching for life's defining moments</span>
-    <h1 class="hero-headline">You know what needs<br>to change. Let's <em>begin.</em></h1>
-    <div class="hero-subhead">You don't have to do this alone.</div>
-    <p class="hero-body">Life's transitions — chosen or not — have a way of asking something of us. <strong>Coaching creates the space</strong> to think clearly, move with intention, and trust the person you're becoming.</p>
+    <span class="eyebrow">Coaching for life's defining transitions</span>
+    <h1 class="hero-headline">You've been whole<br>all along. Let's uncover<br>what's already within you.</h1>
+    <div class="hero-subhead">Not reinvention. Realignment with what matters most.</div>
+    <p class="hero-body">Life's transitions—chosen or not—have a way of pulling us away from what feels steady. Coaching creates the space to pause, reflect, and reconnect to the part of you that already knows who you are. From that place, change becomes intentional instead of reactive.</p>
     <div class="cta-group">
-      <a href="#contact" class="btn-primary">Book a Discovery Call</a>
-      <a href="#services" class="btn-secondary">See How I Work &rarr;</a>
+      <a href="#contact" class="btn-primary">Begin the Conversation</a>
+      <a href="#services" class="btn-secondary">See How This Works &rarr;</a>
     </div>
+    <p class="hero-reassurance">A calm, structured conversation—no pressure, just clarity.</p>
   </div>
   <div class="hero-right-panel">
-    <img class="hero-split-img" src="Images/hero.png" alt="">
+    <img class="hero-split-img" src="Images/hero2.png" alt="">
   </div>
 </section>
 
