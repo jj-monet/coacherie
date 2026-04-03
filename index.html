@@ -44,7 +44,7 @@
 
   /* ── HERO ── */
   .hero { position: relative; min-height: 100vh; overflow: hidden; background: var(--deep-olive); }
-  .hero-bg-img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: 5% 8%; z-index: 1; }
+  .hero-bg-img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: 0% 8%; z-index: 1; }
   .hero-overlay { position: absolute; inset: 0; z-index: 2; pointer-events: none;
     background: linear-gradient(to right,
       rgba(50,58,40,0.90) 0%,
@@ -52,7 +52,7 @@
       rgba(50,58,40,0.22) 34%,
       rgba(50,58,40,0.05) 48%,
       transparent 56%); }
-  .hero-left { padding: 148px 0 100px 64px; position: relative; z-index: 3; display: flex; flex-direction: column; justify-content: center; min-height: 100vh; }
+  .hero-left { padding: 148px 0 100px 64px; position: relative; z-index: 3; display: flex; flex-direction: column; justify-content: center; min-height: 100vh; max-width: 480px; }
 
   /* Eyebrow — line to the left of text */
   .eyebrow { display: flex; align-items: center; gap: 14px; font-size: 9.5px; font-weight: 500; letter-spacing: 0.30em; text-transform: uppercase; color: var(--sienna); margin-bottom: 26px; }
