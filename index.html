@@ -43,25 +43,28 @@
   .nav-links a:hover { color: var(--linen); }
 
   /* ── HERO ── */
-  .hero { position: relative; min-height: 100vh; display: grid; grid-template-columns: 55fr 45fr; overflow: hidden; background: var(--deep-olive); }
-  .hero-glow { position: absolute; inset: 0; z-index: 1; pointer-events: none;
-    background: radial-gradient(ellipse 55% 70% at 0% 65%, rgba(196,152,64,0.05) 0%, transparent 65%); }
-  .hero-left { padding: 148px 72px 100px 64px; position: relative; z-index: 2; display: flex; flex-direction: column; justify-content: center; }
-  .hero-right-panel { position: relative; overflow: hidden; z-index: 2; }
-  .hero-split-img { width: 100%; height: 100%; object-fit: cover; object-position: center 8%; display: block;
-    -webkit-mask-image: linear-gradient(to right, transparent 0%, black 22%);
-    mask-image: linear-gradient(to right, transparent 0%, black 22%); }
+  .hero { position: relative; min-height: 100vh; overflow: hidden; background: var(--deep-olive); }
+  .hero-bg-img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: 52% 8%; z-index: 1; }
+  .hero-overlay { position: absolute; inset: 0; z-index: 2; pointer-events: none;
+    background: linear-gradient(to right,
+      rgba(50,58,40,0.94) 0%,
+      rgba(50,58,40,0.92) 24%,
+      rgba(50,58,40,0.55) 40%,
+      rgba(50,58,40,0.10) 54%,
+      transparent 62%); }
+  .hero-left { padding: 148px 0 100px 64px; position: relative; z-index: 3; display: flex; flex-direction: column; justify-content: center; min-height: 100vh; }
 
   /* Eyebrow — line to the left of text */
-  .eyebrow { display: flex; align-items: center; gap: 14px; font-size: 10px; font-weight: 500; letter-spacing: 0.27em; text-transform: uppercase; color: var(--sienna); margin-bottom: 26px; }
+  .eyebrow { display: flex; align-items: center; gap: 14px; font-size: 9.5px; font-weight: 500; letter-spacing: 0.30em; text-transform: uppercase; color: var(--sienna); margin-bottom: 26px; }
   .eyebrow::before { content: ''; display: block; width: 32px; height: 1.5px; background: var(--sienna); flex-shrink: 0; }
 
-  .hero-headline { font-family: 'Playfair Display', serif; font-size: clamp(38px, 5vw, 68px); font-weight: 900; line-height: 1.1; color: var(--linen); margin-bottom: 38px; max-width: 560px; }
+  .hero-headline { font-family: 'Playfair Display', serif; font-size: clamp(36px, 4.8vw, 64px); font-weight: 900; line-height: 1.1; color: var(--linen); margin-bottom: 32px; max-width: 520px; }
   .hero-headline span { display: block; }
   .hero-headline span + span { margin-top: 0.5em; }
-  .hero-subhead { font-family: 'Playfair Display', serif; font-size: clamp(18px, 2vw, 26px); font-weight: 400; line-height: 1.4; color: var(--honey); margin-bottom: 30px; opacity: 0.88; }
-  .hero-subhead em { font-style: italic; }
-  .hero-body { font-size: 15.5px; font-weight: 300; line-height: 1.65; color: var(--text-on-dark); max-width: 460px; margin-bottom: 34px; }
+  .hero-headline em { font-style: italic; color: var(--sienna); font-weight: 700; }
+  .hero-subhead { font-family: 'Playfair Display', serif; font-size: clamp(17px, 1.8vw, 24px); font-weight: 400; line-height: 1.55; color: var(--text-on-dark); margin-bottom: 30px; }
+  .hero-subhead em { font-style: italic; color: var(--honey); display: block; }
+  .hero-body { font-size: 15.5px; font-weight: 300; line-height: 1.65; color: var(--text-on-dark); max-width: 480px; margin-bottom: 34px; }
 
   .cta-group { display: flex; align-items: center; gap: 24px; flex-wrap: wrap; margin-bottom: 22px; }
   .hero-reassurance { font-size: 12px; font-weight: 300; letter-spacing: 0.04em; color: rgba(234,224,212,0.42); }
@@ -78,8 +81,8 @@
   .hero-subhead { animation: fadeUp 0.7s 0.2s ease both; }
   .hero-body { animation: fadeUp 0.7s 0.3s ease both; }
   .cta-group { animation: fadeUp 0.7s 0.4s ease both; }
-  .hero-split-img { animation: fadeUp 0.9s 0.2s ease both; }
-  .hero-glow { animation: fadeIn 1.4s 0.2s ease both; }
+  .hero-bg-img { animation: fadeIn 1.2s ease both; }
+  .hero-overlay { animation: fadeIn 1.4s 0.1s ease both; }
 
   /* ── BELOW FOLD ── */
   .below-fold { background: var(--white); padding: 80px 64px; }
@@ -150,9 +153,9 @@
   /* ── RESPONSIVE ── */
   @media (max-width: 900px) {
     nav { padding: 24px 28px; } .nav-links { display: none; } .nav-tagline { display: none; }
-    .hero { grid-template-columns: 1fr; min-height: auto; }
-    .hero-left { padding: 120px 28px 60px; }
-    .hero-right-panel { display: none; }
+    .hero { min-height: 100svh; }
+    .hero-left { padding: 120px 28px 72px; min-height: 100svh; max-width: 100%; }
+    .hero-overlay { background: linear-gradient(to bottom, rgba(50,58,40,0.92) 0%, rgba(50,58,40,0.88) 55%, rgba(50,58,40,0.50) 100%); }
     .below-fold { padding: 60px 28px; }
     .below-fold-inner { grid-template-columns: 1fr; gap: 40px; }
     .quote-strip { padding: 32px 28px; flex-direction: column; align-items: flex-start; gap: 16px; }
@@ -182,23 +185,21 @@
 
 <!-- ═══════════ HERO ═══════════ -->
 <section class="hero" id="top">
-  <div class="hero-glow"></div>
+  <img class="hero-bg-img" src="Images/hero2.png" alt="">
+  <div class="hero-overlay"></div>
   <div class="hero-left">
     <span class="eyebrow">Coaching for life's defining transitions</span>
     <h1 class="hero-headline">
-      <span>You've been whole<br>all along.</span>
-      <span>Let's uncover<br>what's already<br>within you.</span>
+      <span>You've been <em>whole</em><br>all along.</span>
+      <span>Let's uncover<br>what's already<br><em>within you.</em></span>
     </h1>
-    <div class="hero-subhead">Not reinvention. <em>Realignment with what matters most.</em></div>
+    <div class="hero-subhead">Not reinvention.<em>Realignment with what matters most.</em></div>
     <p class="hero-body">Life's transitions—chosen or not—have a way of pulling us away from what feels steady. Coaching creates the space to pause, reflect, and reconnect to the part of you that already knows who you are. From that place, change becomes intentional instead of reactive.</p>
     <div class="cta-group">
       <a href="#contact" class="btn-primary">Begin the Conversation</a>
       <a href="#services" class="btn-secondary">See How This Works &rarr;</a>
     </div>
     <p class="hero-reassurance">A calm, structured conversation—no pressure, just clarity.</p>
-  </div>
-  <div class="hero-right-panel">
-    <img class="hero-split-img" src="Images/hero2.png" alt="">
   </div>
 </section>
 
