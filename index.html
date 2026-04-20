@@ -33,7 +33,7 @@
     background-repeat: repeat; background-size: 220px 220px; }
 
   /* ── NAV ── */
-  nav { position: absolute; top: 0; left: 0; right: 0; z-index: 10; display: flex; justify-content: space-between; align-items: center; padding: 28px 64px; }
+  nav { position: absolute; top: 0; left: 0; right: 0; z-index: 100; display: flex; justify-content: space-between; align-items: center; padding: 28px 64px; }
   .nav-left { display: flex; align-items: center; gap: 20px; }
   .nav-logo { font-family: 'Playfair Display', serif; font-size: 1.15rem; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; color: var(--linen); text-decoration: none; transition: opacity 0.2s; }
   .nav-logo:hover { opacity: 0.75; }
@@ -43,7 +43,7 @@
   .nav-links a:hover { color: var(--charcoal); }
 
   /* ── HERO ── */
-  .hero { position: relative; min-height: 100vh; overflow: hidden; background: var(--deep-olive); }
+  .hero { position: relative; min-height: 100vh; overflow: hidden; background: var(--deep-olive); isolation: isolate; }
   .hero-bg-img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: 55% 12%; z-index: 1; }
   .hero-overlay { position: absolute; inset: 0; z-index: 2; pointer-events: none;
     background: linear-gradient(to right,
@@ -185,7 +185,7 @@
 
 <!-- ═══════════ HERO ═══════════ -->
 <section class="hero" id="top">
-  <img class="hero-bg-img" src="Images/hero-tree.svg" alt="">
+  <img class="hero-bg-img" src="Images/hero-tree-V2.svg" alt="">
   <div class="hero-overlay"></div>
   <div class="hero-left">
     <span class="eyebrow">Coaching for life's defining transitions</span>
