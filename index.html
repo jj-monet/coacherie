@@ -146,7 +146,11 @@
   .contact-social { display: inline-block; margin-top: 32px; font-size: 12px; font-weight: 400; letter-spacing: 0.08em; text-transform: uppercase; color: var(--sienna); text-decoration: none; border-bottom: 1px solid rgba(176,90,64,0.30); padding-bottom: 2px; transition: opacity 0.2s; }
   .contact-social:hover { opacity: 0.72; }
 
-  /* ── RESPONSIVE ── */
+  /* ── FOOTER ── */
+  footer { background: var(--white); border-top: 1px solid rgba(45,42,38,0.08); padding: 24px 64px; display: flex; justify-content: space-between; align-items: center; }
+  .footer-copy { font-size: 11px; font-weight: 300; color: rgba(45,42,38,0.40); letter-spacing: 0.06em; }
+  .footer-link { font-size: 11px; font-weight: 400; letter-spacing: 0.10em; text-transform: uppercase; color: rgba(45,42,38,0.45); text-decoration: none; border-bottom: 1px solid rgba(45,42,38,0.18); padding-bottom: 1px; transition: color 0.2s; }
+  .footer-link:hover { color: var(--charcoal); }
   @media (max-width: 900px) {
     nav { padding: 20px 28px 0; }
     .nav-links { display: none; }
@@ -306,6 +310,11 @@
     <a href="https://www.instagram.com/" class="contact-social" target="_blank" rel="noopener">Connect on Instagram</a>
   </div>
 </section>
+
+<footer>
+  <span class="footer-copy">&copy; 2025 The Coacherie</span>
+  <a href="design-system.md" download="coacherie-design-system.md" class="footer-link">Download Design System</a>
+</footer>
 
 </body>
 </html>
