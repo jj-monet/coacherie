@@ -73,19 +73,16 @@
   /* ── Animations ── */
   @keyframes fadeUp { from { opacity: 0; transform: translateY(18px); } to { opacity: 1; transform: translateY(0); } }
   @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
-  .eyebrow { animation: fadeUp 0.6s ease both; }
-  .hero-headline { animation: fadeUp 0.7s 0.1s ease both; }
-  .hero-subhead { animation: fadeUp 0.7s 0.2s ease both; }
-  .hero-body { animation: fadeUp 0.7s 0.3s ease both; }
-  .cta-group { animation: fadeUp 0.7s 0.4s ease both; }
+  .hero-headline { animation: fadeUp 0.7s 0s ease both; }
+  .hero-subhead { animation: fadeUp 0.7s 0.1s ease both; }
+  .cta-group { animation: fadeUp 0.7s 0.2s ease both; }
   .hero-overlay { animation: fadeIn 1.4s 0.1s ease both; }
 
   /* ── BELOW FOLD ── */
   .below-fold { background: var(--white); padding: 80px 64px; }
-  .below-fold-inner { max-width: 1100px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 64px; align-items: start; }
-  .proof-label { font-size: 10px; font-weight: 500; letter-spacing: 0.22em; text-transform: uppercase; color: var(--sienna); margin-bottom: 14px; }
-  .proof-stat { font-family: 'Cormorant Garamond', serif; font-size: 26px; font-weight: 600; color: var(--charcoal); line-height: 1.2; margin-bottom: 12px; }
-  .proof-desc { font-size: 14px; font-weight: 300; color: var(--text-mid); line-height: 1.75; }
+  .below-fold-inner { max-width: 720px; margin: 0 auto; }
+  .fold-headline { font-family: 'Cormorant Garamond', serif; font-size: clamp(28px, 3vw, 42px); font-weight: 600; color: var(--charcoal); line-height: 1.15; margin-bottom: 20px; }
+  .fold-body { font-size: 16px; font-weight: 300; color: var(--text-mid); line-height: 1.80; }
 
   /* ── QUOTE STRIP ── */
   .quote-strip { background: var(--linen); border-top: 1px solid rgba(45,42,38,0.08); border-bottom: 1px solid rgba(45,42,38,0.08); padding: 40px 64px; display: flex; align-items: center; justify-content: space-between; gap: 24px; }
@@ -154,7 +151,7 @@
     .hero-left { padding: 36px 28px 48px; max-width: 100%; }
     .hero-overlay { background: linear-gradient(to bottom, rgba(240,234,222,0.97) 0%, rgba(240,234,222,0.93) 55%, rgba(240,234,222,0.65) 100%); }
     .below-fold { padding: 60px 28px; }
-    .below-fold-inner { grid-template-columns: 1fr; gap: 40px; }
+    .below-fold-inner { max-width: 100%; }
     .quote-strip { padding: 32px 28px; flex-direction: column; align-items: flex-start; gap: 16px; }
     .what-i-do { padding: 60px 28px; }
     .what-i-do-grid { grid-template-columns: 1fr; gap: 44px; }
@@ -185,39 +182,22 @@
   <img class="hero-bg-img" src="Images/desk2.jpeg" alt="">
   <div class="hero-overlay"></div>
   <div class="hero-left">
-    <span class="eyebrow">Coaching for life's defining transitions</span>
     <h1 class="hero-headline">
-      <span>Come as you <em>are.</em></span>
-      <span>Leave knowing who you're <em>becoming.</em></span>
+      <span>Coaching for what comes next.</span>
     </h1>
-    <div class="hero-subhead">Not reinvention.<em>Realignment with what matters most.</em></div>
-    <p class="hero-body">Life's transitions—chosen or not—have a way of pulling us away from what feels steady. I help you create the space to pause, reflect, and reconnect to the part of you that already knows who you are. From that place, change becomes intentional instead of reactive.</p>
+    <div class="hero-subhead">Whether you are navigating a career pivot, a major life shift, or a season of uncertainty&mdash;we design the roadmap together.</div>
     <div class="cta-group">
-      <a href="#contact" class="btn-primary">Begin the Conversation</a>
-      <a href="#services" class="btn-secondary">See How This Works &rarr;</a>
+      <a href="#contact" class="btn-primary">Book an introductory call</a>
+      <a href="#services" class="btn-secondary">How it works &rarr;</a>
     </div>
-    <p class="hero-reassurance">A calm, structured conversation—no pressure, just clarity.</p>
   </div>
 </section>
 
 <!-- ═══════════ BELOW FOLD ═══════════ -->
 <section class="below-fold">
   <div class="below-fold-inner">
-    <div>
-      <div class="proof-label">Clarity</div>
-      <div class="proof-stat">Untangle the noise.</div>
-      <p class="proof-desc">When everything feels tangled, coaching cuts through to what actually matters — and gives you permission to set the rest down.</p>
-    </div>
-    <div>
-      <div class="proof-label">Direction</div>
-      <div class="proof-stat">Move with intention.</div>
-      <p class="proof-desc">Not just out of where you are, but toward where you actually want to be. With a path that's yours — not someone else's idea of what should come next.</p>
-    </div>
-    <div>
-      <div class="proof-label">Confidence</div>
-      <div class="proof-stat">Trust yourself again.</div>
-      <p class="proof-desc">The person best equipped to navigate your life is you. Coaching helps you remember — and believe — that.</p>
-    </div>
+    <h2 class="fold-headline">Clear the mental clutter.</h2>
+    <p class="fold-body">When everything feels tangled, you don't need more advice. You need an objective partner to help you filter out the noise, identify what actually matters, and make your next move with total confidence.</p>
   </div>
 </section>
 
@@ -230,12 +210,10 @@
 <!-- ═══════════ SERVICES / CORKBOARD ═══════════ -->
 <section class="what-i-do" id="services">
   <div class="what-i-do-inner">
-    <div class="section-eyebrow">Services</div>
     <div class="what-i-do-grid">
 
       <div class="wid-item">
         <img class="tack" src="Images/Tack1.png" alt="">
-        <div class="wid-item-label">Ongoing</div>
         <div class="wid-item-title">1:1 Coaching</div>
         <p class="wid-item-desc">A consistent relationship over weeks and months. Regular sessions, steady momentum, and a space that's entirely yours — to think, process, and grow into the next version of yourself.</p>
         <a href="#contact" class="wid-link">Get in Touch &rarr;</a>
@@ -243,7 +221,6 @@
 
       <div class="wid-item">
         <img class="tack" src="Images/Tack2.png" alt="">
-        <div class="wid-item-label">Flexible</div>
         <div class="wid-item-title">A dedicated thinking space for wherever you are right now.</div>
         <p class="wid-item-desc">Not everyone needs a long-term commitment to start. Whether you're in a moment of transition or just need a steady place to think, this is a space that meets you exactly where you are. No agenda but yours.</p>
         <a href="#contact" class="wid-link">Book a Session &rarr;</a>
@@ -251,7 +228,6 @@
 
       <div class="wid-item">
         <img class="tack" src="Images/Tack3.svg" alt="">
-        <div class="wid-item-label">Focused</div>
         <div class="wid-item-title">One intensive day. Something concrete to hold.</div>
         <p class="wid-item-desc">Bring the thing you've been circling — the decision, the pivot, the question that won't quiet down. Half a day together. Full presence. You leave with clarity, not just conversation — and something to act on right away.</p>
         <a href="#contact" class="wid-link">Schedule a Call &rarr;</a>
@@ -268,7 +244,6 @@
       <img class="about-img" src="Images/nicole.png" alt="Nicole Then">
     </div>
     <div class="about-copy">
-      <div class="section-eyebrow">About</div>
       <p>Hi there. I'm Nicole, a queer mom of two, a coach in training, and someone who is very much in the middle of her own becoming.</p>
       <p>I know what it feels like to look at your life and not quite recognize it. To have built something real and good and still feel like you've lost the thread back to yourself. To be navigating a world that doesn't always feel safe, trying to figure out not just where you're going, but where you belong, and who gets to come with you.</p>
       <p>That's the work I'm in right now. And it's the work I do with my clients.</p>
@@ -285,7 +260,6 @@
 <!-- ═══════════ CONTACT ═══════════ -->
 <section class="contact-section" id="contact">
   <div class="contact-inner">
-    <div class="section-eyebrow">Contact</div>
     <h2>Let's talk.</h2>
     <p class="contact-lead">Whether you're ready to start or just want to learn more, this is the place. A discovery call is always free — no pressure, no pitch.</p>
     <form class="contact-form" action="https://formspree.io/f/xdapllwd" method="POST">
