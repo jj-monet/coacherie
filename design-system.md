@@ -21,13 +21,13 @@ Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400;1,600
 ---
 
 ### DM Sans *(sans-serif)*
-Used for all body copy, buttons, labels, eyebrows, and form fields. Clean and functional — the workhorse of the brand.
+Used for all body copy, buttons, labels, and form fields. Clean and functional — the workhorse of the brand.
 
 | Weight | Usage |
 |--------|-------|
-| 300 | Body paragraphs, form fields, reassurance text |
+| 300 | Body paragraphs, form fields |
 | 400 | Nav links, secondary buttons, labels |
-| 500 | Buttons (primary), eyebrow labels |
+| 500 | Buttons (primary) |
 
 Google Fonts import:
 ```
@@ -43,8 +43,8 @@ DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500
 | Token | Hex | RGB | Usage |
 |-------|-----|-----|-------|
 | `--charcoal` | `#2D2A26` | 45, 42, 38 | Primary text, headings, nav logo |
-| `--sienna` | `#B05A40` | 176, 90, 64 | Accent — buttons, eyebrows, emphasis, links, active states |
-| `--honey` | `#8C6845` | 140, 104, 69 | Italic emphasis in subheadings |
+| `--sienna` | `#B05A40` | 176, 90, 64 | Accent — buttons, links, active states |
+| `--honey` | `#8C6845` | 140, 104, 69 | Reserved — available for future use |
 | `--walnut` | `#8C7B72` | 140, 123, 114 | Services/corkboard section background |
 
 ### Surfaces
@@ -53,13 +53,13 @@ DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500
 |-------|-----|-------|
 | `--white` | `#FAF8F4` | Page background, nav, service cards, contact section |
 | `--cream` | `#EDE8DF` | Hero background fallback, overlay base |
-| `--linen` | `#EAE3D8` | Quote strip, about section background |
+| `--linen` | `#EAE3D8` | Quote strip, about section background, page headers |
 
 ### Text
 
 | Token | Value | Usage |
 |-------|-------|-------|
-| `--text-body` | `rgba(45,42,38,0.75)` | Hero body copy, subheads |
+| `--text-body` | `rgba(45,42,38,0.75)` | Hero subhead, primary body copy |
 | `--text-mid` | `rgba(45,42,38,0.58)` | Secondary body copy throughout |
 
 ### Derived / Hover States
@@ -69,7 +69,6 @@ DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500
 | `#944830` | Sienna button hover (darkened) |
 | `rgba(45,42,38,0.48)` | Nav tagline |
 | `rgba(45,42,38,0.55)` | Nav links |
-| `rgba(45,42,38,0.40)` | Reassurance / muted text |
 
 ---
 
@@ -80,15 +79,14 @@ DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500
 | Brand logo | Cormorant Garamond | 1.55rem | 400 | Uppercase, letter-spacing 0.30em |
 | Nav tagline | Cormorant Garamond | 14px | 300 | Italic |
 | Nav links | DM Sans | 11px | 400 | Uppercase, letter-spacing 0.16em |
-| Eyebrow labels | DM Sans | 9.5px | 500 | Uppercase, letter-spacing 0.30em, sienna |
-| Hero headline | Cormorant Garamond | clamp(28px → 64px) | 600 | Line-height 1.1 |
+| Hero headline | Cormorant Garamond | clamp(28px → 64px) | 600 | Line-height 1.1, no inline color/italic emphasis |
 | Hero subhead | Cormorant Garamond | clamp(13px → 24px) | 400 | Line-height 1.55 |
-| Hero body | DM Sans | clamp(11px → 15.5px) | 300 | Line-height 1.65 |
-| Section heading | Cormorant Garamond | 22–26px | 600 | |
+| Section heading | Cormorant Garamond | 22–42px | 600 | |
 | Quote | Cormorant Garamond | clamp(20px → 28px) | 400 | Italic |
 | Body copy | DM Sans | 14–16px | 300 | Line-height 1.75–1.85 |
 | Button | DM Sans | 12–13px | 500 | Uppercase, letter-spacing 0.1em |
 | Contact heading | Cormorant Garamond | clamp(36px → 52px) | 400 | Italic, sienna |
+| Product title | Cormorant Garamond | 22px | 600 | Line-height 1.25 |
 
 ---
 
@@ -120,10 +118,29 @@ DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500
 
 ---
 
-## Voice & Tone Notes
+## Voice & Tone
 
+### Do
 - Warm, grounded, unhurried
 - Honest without being heavy
-- Speaks directly to the reader ("you"), not about them
-- Tagline: *Come as you are. Leave knowing who you're becoming.*
-- Emphasis words (*are*, *becoming*) styled in sienna italic
+- Speak directly to the reader ("you"), not about them
+- Direct, action-oriented — focus on tangible outcomes
+- Simple sentences, no jargon
+
+### Don't
+- No small uppercase eyebrow labels above headings
+- No inline colored or italicized emphasis words inside headlines
+- No abstract language: "space to pause," "realignment," "intentional instead of reactive"
+- No reassurance copy that hedges or softens the CTA ("no pressure, just clarity")
+
+### Tagline
+*Come as you are. Leave knowing who you're becoming.*
+
+---
+
+## Pages
+
+| File | Purpose |
+|------|---------|
+| `index.html` | Main single-page site — hero, services, about, contact |
+| `products.html` | On-demand tools product grid — links out to Paperbell |
