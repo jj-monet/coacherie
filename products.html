@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>On-Demand Tools | The Coacherie</title>
+<link rel="icon" type="image/png" href="Images/nkt_orange.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400;1,600&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --cream:     #EDE8DF;
+    --sienna:    #B05A40;
+    --linen:     #EAE3D8;
+    --charcoal:  #2D2A26;
+    --white:     #FAF8F4;
+    --text-body: rgba(45,42,38,0.75);
+    --text-mid:  rgba(45,42,38,0.58);
+  }
+  body { font-family: 'DM Sans', sans-serif; font-weight: 300; background: var(--white); color: var(--charcoal); overflow-x: hidden; }
+
+  /* ── NAV ── */
+  nav { position: relative; background: var(--white); display: flex; flex-direction: column; align-items: center; padding: 30px 64px 0; border-bottom: 1px solid rgba(45,42,38,0.08); z-index: 100; }
+  .nav-brand { display: flex; flex-direction: column; align-items: center; margin-bottom: 18px; }
+  .nav-logo { font-family: 'Cormorant Garamond', serif; font-size: 1.55rem; font-weight: 400; letter-spacing: 0.30em; text-transform: uppercase; color: var(--charcoal); text-decoration: none; transition: opacity 0.2s; }
+  .nav-logo:hover { opacity: 0.60; }
+  .nav-tagline { font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 14px; font-weight: 300; letter-spacing: 0.08em; color: rgba(45,42,38,0.48); margin-top: 4px; }
+  .nav-links { display: flex; gap: 48px; list-style: none; padding: 14px 0; border-top: 1px solid rgba(45,42,38,0.07); width: 100%; justify-content: center; }
+  .nav-links a { font-size: 11px; font-weight: 400; letter-spacing: 0.16em; text-transform: uppercase; color: rgba(45,42,38,0.55); text-decoration: none; transition: color 0.2s; }
+  .nav-links a:hover { color: var(--charcoal); }
+
+  /* ── PAGE HEADER ── */
+  .page-header { background: var(--linen); padding: 64px 64px 52px; border-bottom: 1px solid rgba(45,42,38,0.08); }
+  .page-header-inner { max-width: 1100px; margin: 0 auto; }
+  .page-header h1 { font-family: 'Cormorant Garamond', serif; font-size: clamp(32px, 4vw, 52px); font-weight: 600; color: var(--charcoal); line-height: 1.1; margin-bottom: 14px; }
+  .page-header p { font-size: 15px; font-weight: 300; color: var(--text-mid); line-height: 1.7; max-width: 520px; }
+
+  /* ── PRODUCTS GRID ── */
+  .products-section { padding: 72px 64px 100px; }
+  .products-inner { max-width: 1100px; margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 36px; align-items: start; }
+
+  .product-card { background: var(--white); border: 1px solid rgba(45,42,38,0.09); border-radius: 2px; overflow: hidden; display: flex; flex-direction: column; transition: box-shadow 0.2s, transform 0.2s; }
+  .product-card:hover { box-shadow: 0 10px 36px rgba(45,42,38,0.11); transform: translateY(-2px); }
+
+  .product-img { width: 100%; aspect-ratio: 4 / 3; object-fit: cover; display: block; filter: sepia(8%) saturate(90%); }
+
+  .product-body { padding: 28px 28px 32px; display: flex; flex-direction: column; flex: 1; }
+  .product-title { font-family: 'Cormorant Garamond', serif; font-size: 22px; font-weight: 600; color: var(--charcoal); line-height: 1.25; margin-bottom: 16px; }
+  .product-desc { font-size: 14px; font-weight: 300; color: var(--text-mid); line-height: 1.82; margin-bottom: 28px; flex: 1; }
+  .product-desc p + p { margin-top: 14px; }
+
+  .btn-buy { display: inline-block; background: var(--sienna); color: var(--white); font-family: 'DM Sans', sans-serif; font-size: 12px; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase; padding: 14px 28px; border-radius: 2px; text-decoration: none; text-align: center; transition: background 0.2s, transform 0.15s; align-self: flex-start; }
+  .btn-buy:hover { background: #944830; transform: translateY(-1px); }
+
+  /* ── BACK LINK ── */
+  .back-bar { padding: 0 64px 0; }
+  .back-bar-inner { max-width: 1100px; margin: 0 auto; padding: 24px 0; border-bottom: 1px solid rgba(45,42,38,0.07); }
+  .back-link { font-size: 11px; font-weight: 400; letter-spacing: 0.14em; text-transform: uppercase; color: rgba(45,42,38,0.50); text-decoration: none; transition: color 0.2s; }
+  .back-link:hover { color: var(--charcoal); }
+  .back-link::before { content: '← '; }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 900px) {
+    nav { padding: 20px 28px 0; }
+    .nav-links { display: none; }
+    .page-header { padding: 48px 28px 40px; }
+    .back-bar { padding: 0 28px; }
+    .products-section { padding: 48px 28px 72px; }
+    .products-inner { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ═══════════ NAV ═══════════ -->
+<nav>
+  <div class="nav-brand">
+    <a href="index.html" class="nav-logo">The Coacherie</a>
+    <span class="nav-tagline">with Nicole Then</span>
+  </div>
+  <ul class="nav-links">
+    <li><a href="index.html#about">About</a></li>
+    <li><a href="index.html#services">Services</a></li>
+    <li><a href="index.html#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- ═══════════ BACK ═══════════ -->
+<div class="back-bar">
+  <div class="back-bar-inner">
+    <a href="index.html#services" class="back-link">Back to Services</a>
+  </div>
+</div>
+
+<!-- ═══════════ PAGE HEADER ═══════════ -->
+<div class="page-header">
+  <div class="page-header-inner">
+    <h1>On-Demand Tools</h1>
+    <p>Standalone resources you can pick up and use on your own time — no sessions, no commitment.</p>
+  </div>
+</div>
+
+<!-- ═══════════ PRODUCTS ═══════════ -->
+<section class="products-section">
+  <div class="products-inner">
+
+    <div class="product-card">
+      <img class="product-img" src="Images/journal.jpeg" alt="Guided Reflection Journal">
+      <div class="product-body">
+        <h2 class="product-title">Guided Reflection Journal</h2>
+        <div class="product-desc">
+          <p>This isn't a journal that hands you the same five questions every day. Each entry opens with a short check-in, then a single prompt drawn from six different corners of reflection — values, transitions, relationships, body, the things you tend to avoid, and the small good things too.</p>
+          <p>Answer as much or as little as you want, tag what it was about, and the next prompt shifts to meet you there — quietly making sure nothing gets circled forever, and nothing gets left untouched too long either.</p>
+          <p>There's no AI reading what you write, no algorithm interpreting you. Just a simple, steady logic that keeps things moving — and your words, staying exactly where you put them.</p>
+        </div>
+        <a href="https://app.paperbell.com/checkout/packages/228172" class="btn-buy" target="_blank" rel="noopener">Get it &rarr;</a>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+</body>
+</html>
