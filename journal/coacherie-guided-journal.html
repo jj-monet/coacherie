@@ -1,0 +1,668 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>The Coacherie — Guided Reflection Journal</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400;1,600&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500&display=swap');
+
+  :root {
+    --charcoal: #2D2A26;
+    --sienna: #B05A40;
+    --sienna-hover: #944830;
+    --honey: #8C6845;
+    --walnut: #8C7B72;
+    --white: #FAF8F4;
+    --cream: #EDE8DF;
+    --linen: #EAE3D8;
+    --text-body: rgba(45,42,38,0.75);
+    --text-mid: rgba(45,42,38,0.58);
+    --text-muted: rgba(45,42,38,0.40);
+    --nav-tagline: rgba(45,42,38,0.48);
+  }
+
+  * { box-sizing: border-box; }
+
+  body {
+    margin: 0;
+    background: var(--cream);
+    font-family: 'DM Sans', sans-serif;
+    color: var(--charcoal);
+    display: flex;
+    justify-content: center;
+    padding: 40px 20px;
+    min-height: 100vh;
+  }
+
+  .shell {
+    width: 100%;
+    max-width: 480px;
+    display: flex;
+    flex-direction: column;
+  }
+
+  /* ---- brand header ---- */
+  .brand { text-align: center; margin-bottom: 28px; }
+  .brand .logo {
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 400;
+    font-size: 1.55rem;
+    text-transform: uppercase;
+    letter-spacing: 0.30em;
+    color: var(--charcoal);
+  }
+  .brand .subtitle {
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 400;
+    font-style: italic;
+    font-size: 14px;
+    color: var(--nav-tagline);
+    margin-top: 6px;
+  }
+
+  /* ---- card ---- */
+  .card {
+    background: var(--white);
+    border: 1px solid rgba(45,42,38,0.08);
+    border-radius: 3px;
+    padding: 36px 30px;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    min-height: 480px;
+  }
+
+  .eyebrow {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 9.5px;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.30em;
+    color: var(--sienna);
+    margin-bottom: 18px;
+  }
+
+  .screen { display: none; flex-direction: column; flex: 1; }
+  .screen.active { display: flex; }
+
+  /* ---- home ---- */
+  .home-stat {
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 600;
+    font-size: 54px;
+    line-height: 1;
+    color: var(--charcoal);
+    margin: 4px 0 2px;
+  }
+  .home-sub {
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 300;
+    font-size: 14px;
+    color: var(--text-mid);
+    margin-bottom: 28px;
+  }
+  .tagline {
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 400;
+    font-style: italic;
+    font-size: clamp(15px, 3vw, 18px);
+    color: var(--text-body);
+    margin-top: auto;
+    padding-top: 26px;
+    text-align: center;
+    line-height: 1.5;
+  }
+  .tagline em {
+    color: var(--sienna);
+    font-style: italic;
+  }
+
+  /* ---- buttons ---- */
+  .btn {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 12.5px;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    border: none;
+    border-radius: 2px;
+    padding: 16px 36px;
+    cursor: pointer;
+    transition: all 0.15s ease;
+    width: 100%;
+  }
+  .btn-primary {
+    background: var(--sienna);
+    color: var(--white);
+  }
+  .btn-primary:hover { background: var(--sienna-hover); transform: translateY(-1px); }
+  .btn-secondary {
+    background: transparent;
+    color: rgba(45,42,38,0.60);
+    border: 1px solid rgba(45,42,38,0.28);
+    text-transform: uppercase;
+    font-weight: 400;
+  }
+  .btn-secondary:hover { color: var(--charcoal); border-color: rgba(45,42,38,0.5); }
+  .btn-text {
+    background: none;
+    border: none;
+    color: var(--text-mid);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 12px;
+    letter-spacing: 0.05em;
+    text-decoration: underline;
+    text-underline-offset: 3px;
+    cursor: pointer;
+    padding: 10px 0;
+  }
+  .btn-text:hover { color: var(--charcoal); }
+
+  .stack { display: flex; flex-direction: column; gap: 10px; }
+
+  /* ---- checkin ---- */
+  .lede {
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 300;
+    font-size: 14px;
+    color: var(--text-body);
+    margin-bottom: 16px;
+    line-height: 1.6;
+  }
+  .checkin-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+    margin-bottom: 30px;
+  }
+  .chip {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 13px;
+    font-weight: 400;
+    padding: 13px 10px;
+    border-radius: 2px;
+    border: 1px solid rgba(45,42,38,0.2);
+    background: var(--cream);
+    color: var(--charcoal);
+    cursor: pointer;
+    text-align: center;
+    transition: all 0.15s ease;
+  }
+  .chip:hover { border-color: var(--sienna); }
+  .chip.selected {
+    background: var(--charcoal);
+    color: var(--white);
+    border-color: var(--charcoal);
+  }
+  .chip.tag { text-align: left; font-size: 12.5px; padding: 11px 14px; }
+
+  /* ---- arch / prompt ---- */
+  .arch-wrap {
+    position: relative;
+    margin: 6px 0 30px;
+    min-height: 230px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .arch-svg { position: absolute; inset: 0; width: 100%; height: 100%; }
+  .arch-path {
+    stroke: var(--sienna);
+    stroke-width: 1.3;
+    stroke-dasharray: 760;
+    stroke-dashoffset: 760;
+    fill: none;
+    transition: stroke-dashoffset 1.1s cubic-bezier(0.65,0,0.35,1);
+  }
+  .arch-path.open { stroke-dashoffset: 0; }
+  .arch-content { position: relative; padding: 42px 28px 20px; text-align: center; }
+  .prompt-theme {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 9.5px;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.30em;
+    color: var(--honey);
+    margin-bottom: 16px;
+  }
+  .prompt-text {
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 400;
+    font-size: clamp(20px, 4.5vw, 25px);
+    line-height: 1.35;
+    color: var(--charcoal);
+  }
+
+  /* ---- write ---- */
+  .write-recap {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-weight: 400;
+    font-size: 16px;
+    color: var(--text-body);
+    margin-bottom: 18px;
+    border-left: 2px solid var(--honey);
+    padding-left: 14px;
+  }
+  textarea {
+    width: 100%;
+    min-height: 220px;
+    background: var(--cream);
+    border: 1px solid rgba(45,42,38,0.18);
+    border-radius: 2px;
+    padding: 16px;
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 300;
+    font-size: 15px;
+    line-height: 1.75;
+    color: var(--charcoal);
+    resize: vertical;
+    margin-bottom: 18px;
+  }
+  textarea:focus { outline: none; border-color: var(--sienna); }
+  textarea::placeholder { color: var(--text-muted); }
+
+  /* ---- tag screen ---- */
+  .tag-grid { display: flex; flex-wrap: wrap; gap: 8px; margin: 4px 0 30px; }
+
+  /* ---- summary ---- */
+  .summary-icon {
+    text-align: center;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 34px;
+    color: var(--sienna);
+    margin-bottom: 10px;
+  }
+  .summary-msg {
+    text-align: center;
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 400;
+    font-size: 19px;
+    color: var(--charcoal);
+    margin-bottom: 8px;
+  }
+  .pattern-note {
+    background: var(--linen);
+    border: 1px solid rgba(140,104,69,0.3);
+    border-radius: 2px;
+    padding: 15px 16px;
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 300;
+    font-size: 13px;
+    color: var(--charcoal);
+    margin: 20px 0;
+    text-align: center;
+    line-height: 1.6;
+  }
+  .privacy-note {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 11px;
+    font-weight: 300;
+    color: var(--text-muted);
+    text-align: center;
+    margin-top: 20px;
+    line-height: 1.6;
+  }
+
+  .mt-auto { margin-top: auto; }
+</style>
+</head>
+<body>
+
+<div class="shell">
+  <div class="brand">
+    <div class="logo">The Coacherie</div>
+    <div class="subtitle">Guided Reflection Journal</div>
+  </div>
+
+  <div class="card">
+
+    <!-- HOME -->
+    <div class="screen active" id="screen-home">
+      <div class="eyebrow">Home</div>
+      <div class="home-stat" id="entry-count">0</div>
+      <div class="home-sub" id="entry-label">entries so far</div>
+      <button class="btn btn-primary" onclick="goCheckin()">Begin a new entry</button>
+      <div class="tagline">Come as you <em>are</em>.<br>Leave knowing who you're <em>becoming</em>.</div>
+    </div>
+
+    <!-- CHECK-IN -->
+    <div class="screen" id="screen-checkin">
+      <div class="eyebrow">Quick check-in</div>
+      <p class="lede">How does it feel to arrive today? (optional)</p>
+      <div class="checkin-grid" id="checkin-grid"></div>
+      <div class="stack mt-auto">
+        <button class="btn btn-primary" onclick="goPrompt()">Continue</button>
+        <button class="btn-text" onclick="goPrompt()">Skip check-in</button>
+      </div>
+    </div>
+
+    <!-- PROMPT -->
+    <div class="screen" id="screen-prompt">
+      <div class="eyebrow">Today's prompt</div>
+      <div class="arch-wrap">
+        <svg class="arch-svg" viewBox="0 0 400 260" preserveAspectRatio="none" aria-hidden="true">
+          <path id="arch-path" class="arch-path" d="M 12 258 L 12 110 C 12 40 80 8 200 8 C 320 8 388 40 388 110 L 388 258" />
+        </svg>
+        <div class="arch-content">
+          <div class="prompt-theme" id="prompt-theme"></div>
+          <div class="prompt-text" id="prompt-text"></div>
+        </div>
+      </div>
+      <div class="stack mt-auto">
+        <button class="btn btn-primary" onclick="goWrite()">Begin writing</button>
+        <button class="btn-text" onclick="goPrompt()">Show a different prompt</button>
+      </div>
+    </div>
+
+    <!-- WRITE -->
+    <div class="screen" id="screen-write">
+      <div class="eyebrow">Open write</div>
+      <div class="write-recap" id="write-recap"></div>
+      <textarea id="draft-text" placeholder="Write as much or as little as you like…"></textarea>
+      <div class="stack">
+        <button class="btn btn-primary" onclick="goTag()">Finish entry</button>
+        <button class="btn-text" onclick="goTag()">Skip — I'm done for now</button>
+      </div>
+    </div>
+
+    <!-- TAG -->
+    <div class="screen" id="screen-tag">
+      <div class="eyebrow">Tag this entry</div>
+      <p class="lede">What was this entry about? Select any that fit — this helps choose your next prompt. No one reads this but you.</p>
+      <div class="tag-grid" id="tag-grid"></div>
+      <div class="stack mt-auto">
+        <button class="btn btn-primary" onclick="saveEntry(false)">Save entry</button>
+        <button class="btn-text" onclick="saveEntry(true)">Skip tagging</button>
+      </div>
+    </div>
+
+    <!-- SUMMARY -->
+    <div class="screen" id="screen-summary">
+      <div class="summary-icon">✓</div>
+      <div class="summary-msg">Entry saved.</div>
+      <div class="pattern-note" id="pattern-note" style="display:none;"></div>
+      <div class="stack mt-auto">
+        <button class="btn btn-primary" onclick="goHome()">Back to home</button>
+      </div>
+      <div class="privacy-note">This entry stayed on this device. Nothing was transmitted anywhere.</div>
+    </div>
+
+  </div>
+</div>
+
+<script>
+/* ---------------------------------------------------------
+   THE COACHERIE — Guided Reflection Journal
+   Non-AI adaptive model: tag-based branching + weighted
+   rotation. No entry text ever leaves this browser.
+   All state is stored in this browser's localStorage only.
+--------------------------------------------------------- */
+
+const THEMES = {
+  values: { label: "Values & Alignment", short: "Values", prompts: [
+    "What would it look like to do more of this on purpose?",
+    "Whose voice is loudest when you think about this?",
+    "What's the cost of staying aligned with this right now?",
+    "If this value had a season, what season is it in for you?",
+    "What's one small choice this week that would honor this?",
+    "Where do you feel resistance to this, even slightly?",
+    "What would change if you trusted this fully?",
+    "Who in your life reflects this value back to you?",
+  ]},
+  transitions: { label: "Transitions & Change", short: "Transitions", prompts: [
+    "What are you leaving behind, even if no one's naming it?",
+    "What part of the \"in-between\" feels hardest right now?",
+    "What would moving through this a little faster look like — or do you not want that?",
+    "What's something from before that you're still holding onto?",
+    "What would it mean to let this take longer than expected?",
+    "What's one thing that's steadier now than it was a month ago?",
+    "Who else is affected by this transition, and how does that sit with you?",
+    "What would \"arrived\" even look like here?",
+  ]},
+  relationships: { label: "Relationships & Roles", short: "Relationships", prompts: [
+    "Whose expectations are present in this, even unspoken?",
+    "What do you wish this person knew that you haven't said?",
+    "Where does this relationship ask you to be someone slightly different?",
+    "What would it cost to show up as more fully yourself here?",
+    "What's easy about this relationship right now? What's hard?",
+    "Is there a boundary here you haven't named yet?",
+    "What do you get from this role that's hard to admit?",
+    "Who do you feel most like yourself around lately?",
+  ]},
+  body: { label: "Body & Energy", short: "Body", prompts: [
+    "Where do you feel this in your body, if anywhere?",
+    "What's your energy asking for that you haven't given it?",
+    "What's one thing that reliably restores you, and when did you last do it?",
+    "What are you pushing through right now instead of resting?",
+    "How has your energy changed in the last few weeks?",
+    "What would it look like to listen to this instead of override it?",
+    "What's tiring you that you haven't said out loud?",
+    "When did you last feel fully rested — what was different then?",
+  ]},
+  edges: { label: "Edges & Avoidance", short: "Edges", prompts: [
+    "What have you been circling around in this entry?",
+    "What's something you almost wrote, but didn't?",
+    "What would you say here if no one would ever read it?",
+    "What are you protecting by staying quiet about this?",
+    "What's the version of this you're most afraid is true?",
+    "What would it cost to say this plainly?",
+    "What's one small step toward the edge you're avoiding?",
+    "Who would you tell this to, if you told anyone?",
+  ]},
+  grounding: { label: "Grounding / Gratitude", short: "Grounding", prompts: [
+    "What's one small thing that felt good today?",
+    "Who or what made this week easier?",
+    "What's something you're proud of that no one noticed?",
+    "What's steady in your life right now?",
+    "What made you laugh recently?",
+    "What's a small comfort you gave yourself this week?",
+    "What are you looking forward to, even slightly?",
+    "What's something ordinary you don't want to take for granted?",
+  ]},
+};
+
+const THEME_KEYS = Object.keys(THEMES);
+const CHECKIN_WORDS = ["Heavy", "Light", "Tender", "Steady", "Foggy", "Full"];
+const STORAGE_KEY = "coacherie_journal_state_v1";
+
+function shuffle(arr) {
+  const a = [...arr];
+  for (let i = a.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [a[i], a[j]] = [a[j], a[i]];
+  }
+  return a;
+}
+
+function freshQueues() {
+  const q = {};
+  THEME_KEYS.forEach(k => { q[k] = shuffle([...Array(THEMES[k].prompts.length).keys()]); });
+  return q;
+}
+
+/* ---------------- state ---------------- */
+let state = loadState();
+let checkinSelection = null;
+let currentTheme = null;
+let currentPromptIdx = null;
+let selectedTags = [];
+
+function loadState() {
+  try {
+    const raw = localStorage.getItem(STORAGE_KEY);
+    if (raw) return JSON.parse(raw);
+  } catch (e) { /* fall through to fresh state */ }
+  return { entries: [], queues: freshQueues(), lastIdx: {} };
+}
+
+function saveState() {
+  try { localStorage.setItem(STORAGE_KEY, JSON.stringify(state)); }
+  catch (e) { console.warn("Could not save to localStorage:", e); }
+}
+
+/* ---------------- rotation logic ---------------- */
+function nextPromptIndex(themeKey) {
+  if (!state.queues[themeKey] || state.queues[themeKey].length === 0) {
+    let reshuffled = shuffle([...Array(THEMES[themeKey].prompts.length).keys()]);
+    const last = state.lastIdx[themeKey];
+    if (reshuffled[0] === last && reshuffled.length > 1) {
+      [reshuffled[0], reshuffled[1]] = [reshuffled[1], reshuffled[0]];
+    }
+    state.queues[themeKey] = reshuffled;
+  }
+  const idx = state.queues[themeKey].shift();
+  state.lastIdx[themeKey] = idx;
+  saveState();
+  return idx;
+}
+
+function pickNextTheme() {
+  const recent = state.entries.slice(-10);
+  const counts = {};
+  THEME_KEYS.forEach(k => counts[k] = 0);
+  recent.forEach(e => e.tags.forEach(t => { if (counts[t] !== undefined) counts[t] += 1; }));
+
+  let gap = 0;
+  for (let i = state.entries.length - 1; i >= 0; i--) {
+    if (state.entries[i].tags.includes("grounding")) break;
+    gap += 1;
+  }
+
+  const weights = {};
+  THEME_KEYS.forEach(k => { if (k !== "grounding") weights[k] = 1 / (counts[k] + 1); });
+  weights.grounding = gap >= 5 ? 999 : gap === 4 ? 8 : gap === 3 ? 3 : 0.3;
+
+  const total = Object.values(weights).reduce((a, b) => a + b, 0);
+  let r = Math.random() * total;
+  for (const k of THEME_KEYS) {
+    r -= weights[k];
+    if (r <= 0) return k;
+  }
+  return THEME_KEYS[0];
+}
+
+/* ---------------- screen navigation ---------------- */
+function showScreen(id) {
+  document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+}
+
+function goHome() {
+  renderHome();
+  showScreen('screen-home');
+}
+
+function goCheckin() {
+  checkinSelection = null;
+  renderCheckin();
+  showScreen('screen-checkin');
+}
+
+function goPrompt() {
+  currentTheme = pickNextTheme();
+  currentPromptIdx = nextPromptIndex(currentTheme);
+  document.getElementById('prompt-theme').textContent = THEMES[currentTheme].short;
+  document.getElementById('prompt-text').textContent = THEMES[currentTheme].prompts[currentPromptIdx];
+  const path = document.getElementById('arch-path');
+  path.classList.remove('open');
+  showScreen('screen-prompt');
+  void path.offsetWidth; // force reflow so the animation restarts
+  setTimeout(() => path.classList.add('open'), 60);
+}
+
+function goWrite() {
+  document.getElementById('write-recap').textContent = THEMES[currentTheme].prompts[currentPromptIdx];
+  document.getElementById('draft-text').value = '';
+  showScreen('screen-write');
+  document.getElementById('draft-text').focus();
+}
+
+function goTag() {
+  selectedTags = [];
+  renderTagGrid();
+  showScreen('screen-tag');
+}
+
+/* ---------------- render helpers ---------------- */
+function renderHome() {
+  const n = state.entries.length;
+  document.getElementById('entry-count').textContent = n;
+  document.getElementById('entry-label').textContent = n === 1 ? 'entry so far' : 'entries so far';
+}
+
+function renderCheckin() {
+  const grid = document.getElementById('checkin-grid');
+  grid.innerHTML = '';
+  CHECKIN_WORDS.forEach(w => {
+    const btn = document.createElement('button');
+    btn.className = 'chip';
+    btn.textContent = w;
+    btn.onclick = () => {
+      checkinSelection = (checkinSelection === w) ? null : w;
+      renderCheckin();
+    };
+    if (checkinSelection === w) btn.classList.add('selected');
+    grid.appendChild(btn);
+  });
+}
+
+function renderTagGrid() {
+  const grid = document.getElementById('tag-grid');
+  grid.innerHTML = '';
+  THEME_KEYS.forEach(k => {
+    const btn = document.createElement('button');
+    btn.className = 'chip tag';
+    btn.textContent = THEMES[k].short;
+    btn.onclick = () => {
+      const i = selectedTags.indexOf(k);
+      if (i === -1) selectedTags.push(k); else selectedTags.splice(i, 1);
+      renderTagGrid();
+    };
+    if (selectedTags.includes(k)) btn.classList.add('selected');
+    grid.appendChild(btn);
+  });
+}
+
+/* ---------------- save + pattern surfacing ---------------- */
+function saveEntry(skipTags) {
+  const tags = skipTags ? [] : [...selectedTags];
+  const text = document.getElementById('draft-text').value;
+
+  const entry = {
+    id: Date.now(),
+    text: text,
+    tags: tags,
+    seedTheme: currentTheme,
+    seedPromptIdx: currentPromptIdx,
+    timestamp: new Date().toISOString(),
+  };
+  state.entries.push(entry);
+  saveState();
+
+  const noteEl = document.getElementById('pattern-note');
+  if (state.entries.length % 10 === 0) {
+    const recent = state.entries.slice(-10);
+    const counts = {};
+    recent.forEach(e => e.tags.forEach(t => counts[t] = (counts[t] || 0) + 1));
+    const top = Object.entries(counts).sort((a, b) => b[1] - a[1])[0];
+    if (top && top[1] >= 3) {
+      noteEl.textContent = `You've tagged ${THEMES[top[0]].label} in ${top[1]} of your last 10 entries.`;
+      noteEl.style.display = 'block';
+    } else {
+      noteEl.style.display = 'none';
+    }
+  } else {
+    noteEl.style.display = 'none';
+  }
+
+  showScreen('screen-summary');
+}
+
+/* ---------------- init ---------------- */
+renderHome();
+</script>
+
+</body>
+</html>
