@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>On-Demand Tools | The Coacherie</title>
+<title>Tools for Coaches | The Coacherie</title>
 <link rel="icon" type="image/png" href="Images/nkt_orange.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -32,7 +32,7 @@
   .nav-links a:hover { color: var(--charcoal); }
 
   /* ── PAGE HEADER ── */
-  .page-header { background: var(--linen); padding: 64px 64px 52px; border-bottom: 1px solid rgba(45,42,38,0.08); }
+  .page-header { background: var(--cream); padding: 64px 64px 52px; border-bottom: 1px solid rgba(45,42,38,0.08); }
   .page-header-inner { max-width: 1100px; margin: 0 auto; }
   .page-header h1 { font-family: 'Cormorant Garamond', serif; font-size: clamp(32px, 4vw, 52px); font-weight: 600; color: var(--charcoal); line-height: 1.1; margin-bottom: 14px; }
   .page-header p { font-size: 15px; font-weight: 300; color: var(--text-mid); line-height: 1.7; max-width: 520px; }
@@ -41,7 +41,7 @@
   .products-section { padding: 72px 64px 100px; }
   .products-inner { max-width: 1100px; margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 36px; align-items: start; }
 
-  .product-card { background: var(--white); border: 1px solid rgba(45,42,38,0.09); border-radius: 2px; overflow: hidden; display: flex; flex-direction: column; transition: box-shadow 0.2s, transform 0.2s; }
+  .product-card { background: var(--linen); border: 1px solid transparent; border-radius: 2px; overflow: hidden; display: flex; flex-direction: column; transition: box-shadow 0.2s, transform 0.2s; }
   .product-card:hover { box-shadow: 0 10px 36px rgba(45,42,38,0.11); transform: translateY(-2px); }
 
   .product-img { width: 100%; aspect-ratio: 4 / 3; object-fit: cover; display: block; filter: sepia(8%) saturate(90%); }
@@ -54,12 +54,9 @@
   .btn-buy { display: inline-block; background: var(--sienna); color: var(--white); font-family: 'DM Sans', sans-serif; font-size: 12px; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase; padding: 14px 28px; border-radius: 2px; text-decoration: none; text-align: center; transition: background 0.2s, transform 0.15s; align-self: flex-start; }
   .btn-buy:hover { background: #944830; transform: translateY(-1px); }
 
-  /* ── COACHES SECTION ── */
-  .coaches-section { background: var(--cream); border-top: 1px solid rgba(45,42,38,0.10); padding: 60px 64px 80px; }
-  .coaches-inner { max-width: 1100px; margin: 0 auto; }
-  .coaches-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 36px; align-items: start; }
-  .product-card--coaches { background: var(--linen); border-color: transparent; }
-  .product-card--coaches .product-body { padding-top: 40px; }
+  /* ── EMPTY STATE ── */
+  .empty-state { grid-column: 1 / -1; padding: 60px 0 20px; }
+  .empty-state p { font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: clamp(18px, 2vw, 24px); font-weight: 400; color: rgba(45,42,38,0.40); }
 
   /* ── BACK LINK ── */
   .back-bar { padding: 0 64px 0; }
@@ -76,8 +73,6 @@
     .back-bar { padding: 0 28px; }
     .products-section { padding: 48px 28px 72px; }
     .products-inner { grid-template-columns: 1fr; }
-    .coaches-section { padding: 48px 28px 60px; }
-    .coaches-grid { grid-template-columns: 1fr; }
   }
 </style>
 </head>
@@ -99,15 +94,15 @@
 <!-- ═══════════ BACK ═══════════ -->
 <div class="back-bar">
   <div class="back-bar-inner">
-    <a href="index.html#services" class="back-link">Back to Services</a>
+    <a href="products.html" class="back-link">Back to Tools &amp; Resources</a>
   </div>
 </div>
 
 <!-- ═══════════ PAGE HEADER ═══════════ -->
 <div class="page-header">
   <div class="page-header-inner">
-    <h1>On-Demand Tools</h1>
-    <p>Standalone resources you can pick up and use on your own time — no sessions, no commitment.</p>
+    <h1>Tools for Coaches</h1>
+    <p>Frameworks, templates, and resources to support your work with clients and your own development as a practitioner.</p>
   </div>
 </div>
 
@@ -115,38 +110,10 @@
 <section class="products-section">
   <div class="products-inner">
 
-    <div class="product-card">
-      <img class="product-img" src="Images/journal.jpeg" alt="Guided Reflection Journal">
-      <div class="product-body">
-        <h2 class="product-title">Guided Reflection Journal</h2>
-        <div class="product-desc">
-          <p>This isn't a journal that hands you the same five questions every day. Each entry opens with a short check-in, then a single prompt drawn from six different corners of reflection — values, transitions, relationships, body, the things you tend to avoid, and the small good things too.</p>
-          <p>Answer as much or as little as you want, tag what it was about, and the next prompt shifts to meet you there — quietly making sure nothing gets circled forever, and nothing gets left untouched too long either.</p>
-          <p>There's no AI reading what you write, no algorithm interpreting you. Just a simple, steady logic that keeps things moving — and your words, staying exactly where you put them.</p>
-        </div>
-        <a href="https://app.paperbell.com/checkout/packages/228172" class="btn-buy" target="_blank" rel="noopener">Get it &rarr;</a>
-      </div>
+    <div class="empty-state">
+      <p>More coming soon.</p>
     </div>
 
-  </div>
-</section>
-
-<!-- ═══════════ COACHES SECTION ═══════════ -->
-<section class="coaches-section">
-  <div class="coaches-inner">
-    <div class="coaches-grid">
-
-      <div class="product-card product-card--coaches">
-        <div class="product-body">
-          <h2 class="product-title">Tools for Coaches</h2>
-          <div class="product-desc">
-            <p>Frameworks, templates, and resources built for coaches in practice — to support your work with clients and your own development as a practitioner.</p>
-          </div>
-          <a href="coaches.html" class="btn-buy">Explore &rarr;</a>
-        </div>
-      </div>
-
-    </div>
   </div>
 </section>
 
