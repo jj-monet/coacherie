@@ -115,6 +115,12 @@
   .wid-link { display: block; margin-top: 28px; background: var(--sienna); color: var(--white); font-family: 'DM Sans', sans-serif; font-size: 12px; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase; text-decoration: none; padding: 13px 24px; border-radius: 2px; text-align: center; transition: background 0.2s, transform 0.15s; }
   .wid-link:hover { background: #944830; transform: translateY(-1px); }
 
+  /* ── COACHES ENTRY ── */
+  .coaches-entry { background: var(--linen); border-top: 1px solid rgba(45,42,38,0.08); border-bottom: 1px solid rgba(45,42,38,0.08); padding: 52px 64px; }
+  .coaches-entry-inner { max-width: 1100px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; gap: 40px; }
+  .coaches-entry-text h2 { font-family: 'Cormorant Garamond', serif; font-size: clamp(20px, 2.2vw, 28px); font-weight: 600; color: var(--charcoal); margin-bottom: 8px; }
+  .coaches-entry-text p { font-size: 14px; font-weight: 300; color: var(--text-mid); line-height: 1.7; max-width: 480px; }
+
   /* ── ABOUT ── */
   .about-section { background: var(--linen); padding: 100px 64px; border-top: 1px solid rgba(45,42,38,0.06); }
   .about-inner { max-width: 1100px; margin: 0 auto; display: grid; grid-template-columns: 340px 1fr; gap: 80px; align-items: start; }
@@ -155,6 +161,8 @@
     .quote-strip { padding: 32px 28px; flex-direction: column; align-items: flex-start; gap: 16px; }
     .what-i-do { padding: 60px 28px; }
     .what-i-do-grid { grid-template-columns: 1fr; gap: 44px; }
+    .coaches-entry { padding: 40px 28px; }
+    .coaches-entry-inner { flex-direction: column; align-items: flex-start; gap: 24px; }
     .about-section { padding: 60px 28px; }
     .about-inner { grid-template-columns: 1fr; gap: 40px; }
     .about-img { max-width: 280px; border-radius: 50%; }
@@ -234,6 +242,17 @@
       </div>
 
     </div>
+  </div>
+</section>
+
+<!-- ═══════════ COACHES ENTRY ═══════════ -->
+<section class="coaches-entry">
+  <div class="coaches-entry-inner">
+    <div class="coaches-entry-text">
+      <h2>Tools for Coaches</h2>
+      <p>A separate space for coaches in practice — frameworks, templates, and resources to support your work with clients.</p>
+    </div>
+    <a href="coaches.html" class="btn-primary">Explore &rarr;</a>
   </div>
 </section>
 
