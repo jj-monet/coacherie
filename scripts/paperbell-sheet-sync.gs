@@ -2,21 +2,29 @@
  * Paperbell Purchases → Supabase webhook sync
  *
  * SETUP (one-time):
- *  1. Open Apps Script (Extensions → Apps Script) in your Google Sheet.
+ *  1. Open Extensions → Apps Script in your "Paperbell Purchases" Google Sheet.
  *  2. Paste this entire file.
- *  3. Set script properties (Project Settings → Script Properties):
- *       WEBHOOK_URL   → https://<your-project>.supabase.co/functions/v1/paperbell-webhook
- *       WEBHOOK_SECRET → (same value as WEBHOOK_SECRET in your Supabase function env)
- *  4. Run installTrigger() once to register the recurring trigger.
+ *  3. Add these Script Properties (Project Settings → Script Properties):
+ *       WEBHOOK_URL       → https://<your-project>.supabase.co/functions/v1/paperbell-webhook
+ *       SUPABASE_ANON_KEY → your Supabase project's anon/public key
+ *  4. Run installTrigger() once from the editor to register the recurring trigger.
+ *
+ * PAYLOAD SENT:
+ *  {
+ *    "event_id":   <Purchase ID column>  — idempotency key; already-processed IDs return 200
+ *    "email":      <Email column>        — buyer's email, matched against clients table
+ *    "product_id": <Product ID column>   — Paperbell's product ID, must exist in products table
+ *  }
  *
  * HOW IT WORKS:
  *  - syncNewPurchases() runs every 5 minutes via a time-based trigger.
- *  - It reads all data rows from "Paperbell Purchases", skips any Purchase ID
- *    already stored in Script Properties, and POSTs the rest to the webhook.
- *  - On success the Purchase ID is saved so it is never re-sent.
- *  - On HTTP error or network failure it retries up to MAX_ATTEMPTS times
- *    with exponential backoff. If all attempts fail the row is left unsent
- *    and the next trigger run will retry it.
+ *  - It reads all data rows, skips any Purchase ID already recorded as sent,
+ *    and POSTs the rest to the webhook.
+ *  - On HTTP 200 the Purchase ID is saved to Script Properties so it is never re-sent.
+ *  - On 5xx / network error it retries up to MAX_ATTEMPTS times with exponential backoff.
+ *  - On 4xx (bad payload, unmapped product, etc.) it logs the error and moves on
+ *    without retrying — fix the data in the sheet, then run resetSentIds() only
+ *    for that purchase ID if you need to re-send it.
  */
 
 // ─── CONFIG ──────────────────────────────────────────────────────────────────
@@ -25,31 +33,24 @@ const SHEET_NAME   = 'Paperbell Purchases';
 const MAX_ATTEMPTS = 3;
 const SENT_IDS_KEY = 'sentPurchaseIds';
 
-// Column indices (0-based) matching your sheet layout:
+// 0-based column indices matching your sheet layout:
 // Purchase ID | Product ID | Product Description | Date/Time |
 // Amount | Currency | Client ID | First Name | Last Name | Email
 const COL = {
-  PURCHASE_ID:         0,
-  PRODUCT_ID:          1,
-  PRODUCT_DESCRIPTION: 2,
-  DATE_TIME:           3,
-  AMOUNT:              4,
-  CURRENCY:            5,
-  CLIENT_ID:           6,
-  FIRST_NAME:          7,
-  LAST_NAME:           8,
-  EMAIL:               9,
+  PURCHASE_ID: 0,
+  PRODUCT_ID:  1,
+  EMAIL:        9,
 };
 
 // ─── MAIN ────────────────────────────────────────────────────────────────────
 
 function syncNewPurchases() {
-  const props       = PropertiesService.getScriptProperties();
-  const webhookUrl  = props.getProperty('WEBHOOK_URL');
-  const secret      = props.getProperty('WEBHOOK_SECRET');
+  const props      = PropertiesService.getScriptProperties();
+  const webhookUrl = props.getProperty('WEBHOOK_URL');
+  const anonKey    = props.getProperty('SUPABASE_ANON_KEY');
 
-  if (!webhookUrl || !secret) {
-    console.error('Missing WEBHOOK_URL or WEBHOOK_SECRET in Script Properties.');
+  if (!webhookUrl || !anonKey) {
+    console.error('Missing WEBHOOK_URL or SUPABASE_ANON_KEY in Script Properties.');
     return;
   }
 
@@ -60,50 +61,48 @@ function syncNewPurchases() {
   }
 
   const lastRow = sheet.getLastRow();
-  if (lastRow < 2) return; // header only, nothing to do
+  if (lastRow < 2) return; // header only
 
   const rows    = sheet.getRange(2, 1, lastRow - 1, 10).getValues();
   const sentIds = getSentIds();
-  const toSave  = [];
+  const newlySent = [];
 
   for (const row of rows) {
     const purchaseId = String(row[COL.PURCHASE_ID]).trim();
     if (!purchaseId || sentIds.has(purchaseId)) continue;
 
     const payload = {
-      purchaseId,
-      productId:          String(row[COL.PRODUCT_ID]).trim(),
-      productDescription: String(row[COL.PRODUCT_DESCRIPTION]).trim(),
-      dateTime:           toIso(row[COL.DATE_TIME]),
-      amount:             Number(row[COL.AMOUNT]),
-      currency:           String(row[COL.CURRENCY]).trim() || 'USD',
-      clientId:           String(row[COL.CLIENT_ID]).trim(),
-      firstName:          String(row[COL.FIRST_NAME]).trim(),
-      lastName:           String(row[COL.LAST_NAME]).trim(),
-      email:              String(row[COL.EMAIL]).trim(),
+      event_id:   purchaseId,
+      email:      String(row[COL.EMAIL]).trim(),
+      product_id: String(row[COL.PRODUCT_ID]).trim(),
     };
 
+    if (!payload.email || !payload.product_id) {
+      console.warn(`Row with purchase ID ${purchaseId} is missing email or product_id — skipping.`);
+      continue;
+    }
+
     try {
-      postWithRetry(webhookUrl, secret, payload);
+      postWithRetry(webhookUrl, anonKey, payload);
       sentIds.add(purchaseId);
-      toSave.push(purchaseId);
+      newlySent.push(purchaseId);
       console.log(`✓ Sent purchase ${purchaseId}`);
     } catch (err) {
-      // Log and move on — the next trigger run will retry this row.
+      // Leave unsent — next trigger run will retry.
       console.error(`✗ Failed purchase ${purchaseId}: ${err.message}`);
     }
   }
 
-  if (toSave.length > 0) {
+  if (newlySent.length > 0) {
     props.setProperty(SENT_IDS_KEY, JSON.stringify([...sentIds]));
-    console.log(`Saved ${toSave.length} new sent ID(s).`);
+    console.log(`Saved ${newlySent.length} new sent ID(s).`);
   }
 }
 
 // ─── HTTP WITH RETRY ─────────────────────────────────────────────────────────
 
-function postWithRetry(url, secret, payload) {
-  const backoffMs = [1000, 2000, 4000]; // delays before attempt 2, 3, (4 would be unused)
+function postWithRetry(url, anonKey, payload) {
+  const backoffMs = [1000, 2000, 4000];
   let lastErr;
 
   for (let attempt = 0; attempt < MAX_ATTEMPTS; attempt++) {
@@ -111,25 +110,27 @@ function postWithRetry(url, secret, payload) {
 
     try {
       const res = UrlFetchApp.fetch(url, {
-        method:           'post',
-        contentType:      'application/json',
-        payload:          JSON.stringify(payload),
+        method:             'post',
+        contentType:        'application/json',
+        payload:            JSON.stringify(payload),
         muteHttpExceptions: true,
-        headers:          { Authorization: `Bearer ${secret}` },
+        headers: {
+          Authorization: `Bearer ${anonKey}`,
+          apikey:        anonKey,
+        },
       });
 
       const code = res.getResponseCode();
       if (code >= 200 && code < 300) return; // success
 
-      // 4xx errors won't be fixed by retrying — bail immediately
+      // 4xx = client error (bad data, unmapped product, etc.) — don't retry
       if (code >= 400 && code < 500) {
-        throw new Error(`HTTP ${code} (client error): ${res.getContentText().slice(0, 300)}`);
+        throw new Error(`HTTP ${code} (not retrying): ${res.getContentText().slice(0, 300)}`);
       }
 
       lastErr = new Error(`HTTP ${code}: ${res.getContentText().slice(0, 300)}`);
     } catch (err) {
-      // Re-throw 4xx immediately; retry everything else
-      if (err.message && err.message.includes('client error')) throw err;
+      if (err.message && err.message.includes('not retrying')) throw err;
       lastErr = err;
     }
   }
@@ -144,20 +145,10 @@ function getSentIds() {
   return new Set(raw ? JSON.parse(raw) : []);
 }
 
-// ─── HELPERS ─────────────────────────────────────────────────────────────────
-
-function toIso(value) {
-  if (!value) return '';
-  if (value instanceof Date) return value.toISOString();
-  // Try parsing string dates Sheets sometimes returns
-  const d = new Date(value);
-  return isNaN(d.getTime()) ? String(value) : d.toISOString();
-}
-
 // ─── SETUP ───────────────────────────────────────────────────────────────────
 
 /**
- * Run once from the Apps Script editor to install the recurring trigger.
+ * Run once from the editor to install the recurring trigger.
  * Safe to re-run — removes any existing syncNewPurchases trigger first.
  */
 function installTrigger() {
@@ -174,7 +165,7 @@ function installTrigger() {
 }
 
 /**
- * Utility: clear all tracked sent IDs (useful during testing).
+ * Utility: clear all tracked sent IDs (use for testing, or to force a re-send).
  */
 function resetSentIds() {
   PropertiesService.getScriptProperties().deleteProperty(SENT_IDS_KEY);
